@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>NF Móveis Planejados | Design de Interiores e Marcenaria</title>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        petroleo: '#004d4d',
+                        musgo: '#4B5320',
+                        oliva: '#708238',
+                        dourado: '#C5A059'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* CSS personalizado para corrigir as imagens */
+        .acabamento-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .card-image-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 70%; /* Proporção 10:7 */
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .card-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-text {
+            flex: 1;
+        }
+        
+        /* Animações */
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .active-btn {
+            background-color: #708238 !important;
+            border-color: #708238 !important;
+            color: white !important;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .acabamento-card {
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+        
+        /* Estilos para responsividade */
+        @media (max-width: 768px) {
+            .mobile-menu-hidden {
+                display: none !important;
+            }
+            
+            .mobile-text-center {
+                text-align: center !important;
+            }
+            
+            .mobile-stack {
+                flex-direction: column !important;
+            }
+            
+            .mobile-p-4 {
+                padding: 1rem !important;
+            }
+            
+            .mobile-py-8 {
+                padding-top: 2rem !important;
+                padding-bottom: 2rem !important;
+            }
+            
+            .mobile-px-4 {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+        }
+        
+        /* Melhorias para telas muito pequenas */
+        @media (max-width: 375px) {
+            .xs-text-smaller {
+                font-size: 0.875rem !important;
+            }
+            
+            .xs-p-3 {
+                padding: 0.75rem !important;
+            }
+        }
+        
+        /* Estilos para o catálogo de cores */
+        .active-cat-btn {
+            background-color: #708238 !important;
+            color: white !important;
+        }
+        
+        .active-marca-btn {
+            background-color: #004d4d !important;
+            color: white !important;
+        }
+        
+        .cor-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .cor-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-[#fdfdfd] text-gray-900 overflow-x-hidden">
+
+    <!-- Header responsivo com menu mobile -->
+    <header class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+        <nav class="container mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
+            <div class="text-xl sm:text-2xl font-serif font-bold text-petroleo">
+                NF <span class="text-oliva">Móveis Planejados</span>
+            </div>
+            
+            <!-- Menu Desktop -->
+            <div class="hidden md:flex space-x-6 lg:space-x-8 items-center uppercase text-xs tracking-[0.2em] font-semibold">
+                <a href="#home" class="hover:text-oliva transition">Início</a>
+                <a href="#portfolio" class="hover:text-oliva transition">Portfólio</a>
+                <a href="#materiais" class="hover:text-oliva transition">Contato</a>
+                <button onclick="openCatalogoModal()" class="hover:text-oliva transition uppercase text-xs tracking-[0.2em] font-semibold">Catálogo de Cores</button>
+                <a href="#guia-acabamentos" class="bg-petroleo text-white px-4 sm:px-6 py-2 sm:py-3 rounded-sm hover:bg-oliva transition-all text-xs sm:text-sm">Acabamentos</a>
+            </div>
+            
+            <!-- Botão Menu Mobile -->
+            <button id="mobile-menu-button" class="md:hidden text-petroleo text-xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="md:hidden bg-white border-t border-gray-100 py-4 px-6 mobile-menu-hidden shadow-lg">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="hover:text-oliva transition font-medium py-2 border-b border-gray-100">Início</a>
+                <a href="#portfolio" class="hover:text-oliva transition font-medium py-2 border-b border-gray-100">Portfólio</a>
+                <a href="#materiais" class="hover:text-oliva transition font-medium py-2 border-b border-gray-100">Contato</a>
+                <button onclick="openCatalogoModal()" class="hover:text-oliva transition font-medium py-2 border-b border-gray-100 text-left">Catálogo de Cores</button>
+                <a href="#guia-acabamentos" class="bg-petroleo text-white px-6 py-3 rounded-sm hover:bg-oliva transition-all font-medium text-center mt-2">Ver Acabamentos</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section com responsividade aprimorada -->
+    <section id="home" class="relative h-[90vh] sm:h-screen flex items-center justify-center bg-petroleo pt-16 sm:pt-20">
+        <div class="absolute inset-0 bg-black/30 z-10"></div>
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?q=80&w=2070')] bg-cover bg-center"></div>
+        
+        <div class="relative z-20 text-center text-white px-4 sm:px-6 max-w-6xl mx-auto">
+            <h1 class="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif mb-4 sm:mb-6 leading-tight mobile-text-center">
+                Projetos que <br class="hidden sm:block"> contam histórias.
+            </h1>
+            <p class="text-base sm:text-lg md:text-xl font-light mb-6 sm:mb-10 max-w-2xl mx-auto opacity-90 px-4 mobile-text-center">
+                Marcenaria fina sob medida com acabamentos em tons exclusivos e durabilidade garantida.
+            </p>
+            <div class="mobile-text-center">
+                <a href="#portfolio" class="inline-block border border-white px-6 sm:px-10 py-3 sm:py-4 hover:bg-white hover:text-petroleo transition-all duration-300 uppercase text-xs sm:text-sm tracking-widest mx-auto">
+                    Conheça o Portfólio
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Catálogo de Cores -->
+    <div id="catalogo-modal" class="fixed inset-0 bg-black/90 flex items-center justify-center p-2 sm:p-4 z-[100] opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-white rounded-lg shadow-2xl overflow-hidden max-w-full sm:max-w-6xl w-full max-h-[90vh] overflow-y-auto transform scale-95 transition-transform duration-300 mx-2 sm:mx-4">
+            <button class="absolute top-2 sm:top-4 right-2 sm:right-4 text-gray-600 hover:text-gray-900 text-2xl sm:text-3xl font-light leading-none z-10 bg-white/80 rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center" onclick="closeCatalogoModal()">
+                &times;
+            </button>
+            
+            <div class="p-4 sm:p-6 md:p-8">
+                <!-- Cabeçalho do Modal -->
+                <div class="mb-6 sm:mb-8">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-serif text-petroleo mb-2">Catálogo de Cores</h2>
+                    <p class="text-gray-600 text-sm sm:text-base">Explore nossa ampla variedade de cores e acabamentos disponíveis</p>
+                </div>
+
+                <!-- Filtros -->
+                <div class="mb-6 sm:mb-8">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
+                        <div>
+                            <h3 class="text-lg font-semibold text-petroleo mb-2">Filtrar por:</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <button onclick="filterCores('todos')" class="categoria-btn active-cat-btn px-3 sm:px-4 py-2 bg-oliva text-white text-xs sm:text-sm font-medium rounded-sm transition-all">Todas as Cores (84)</button>
+                                <button onclick="filterCores('marca')" class="categoria-btn px-3 sm:px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs sm:text-sm font-medium rounded-sm transition-all">Por Marca</button>
+                            </div>
+                        </div>
+                        
+                        <div class="text-sm text-gray-600">
+                            <span id="current-filter-text">Exibindo 84 cores</span>
+                        </div>
+                    </div>
+
+                    <!-- Filtro por Marca (visível apenas quando selecionado) -->
+                    <div id="marca-filtros" class="hidden mb-4">
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="filterByBrand('todos')" class="marca-btn active-marca-btn px-3 py-1 bg-petroleo text-white text-xs rounded">Todas</button>
+                            <button onclick="filterByBrand('Duratex')" class="marca-btn px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs rounded">Duratex</button>
+                            <button onclick="filterByBrand('Arauco')" class="marca-btn px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs rounded">Arauco</button>
+                            <button onclick="filterByBrand('Berneck')" class="marca-btn px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs rounded">Berneck</button>
+                            <button onclick="filterByBrand('Eucatex')" class="marca-btn px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs rounded">Eucatex</button>
+                            <button onclick="filterByBrand('Guararapes')" class="marca-btn px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs rounded">Guararapes</button>
+                            <button onclick="filterByBrand('Sudati')" class="marca-btn px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs rounded">Sudati</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grid de Cores -->
+                <div id="cores-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+                    <!-- As cores serão geradas dinamicamente pelo JavaScript -->
+                </div>
+
+                <!-- Informações de Contato -->
+                <div class="mt-8 pt-6 border-t border-gray-200">
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="text-sm text-gray-600 mb-2">
+                            <i class="fas fa-info-circle text-oliva mr-2"></i>
+                            Não encontrou a cor que procura? Entre em contato conosco para consultar disponibilidade de outras opções.
+                        </p>
+                        <button onclick="openWhatsAppOrcamento('Consulta de cores do catálogo')" class="mt-2 bg-oliva text-white px-4 py-2 rounded-sm hover:bg-musgo transition-colors text-sm font-medium">
+                            <i class="fab fa-whatsapp mr-2"></i>Consultar cores personalizadas
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Section responsiva -->
+    <section id="portfolio" class="py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 text-center mb-8 sm:mb-12 md:mb-16">
+            <h2 class="text-musgo text-xs sm:text-sm font-bold tracking-[0.3em] uppercase mb-3 sm:mb-4">Galeria</h2>
+            <h3 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-petroleo mobile-text-center">
+                Ambientes Planejados
+            </h3>
+            <p class="mt-3 sm:mt-4 text-gray-600 max-w-2xl mx-auto text-sm sm:text-base px-4">
+                Clique em um projeto para visualizar detalhes e simular cores.
+            </p>
+        </div>
+
+<div class="container mx-auto px-4 sm:px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+    
+    <!-- Cozinha Gourmet Oliva (mantida do original) -->
+    <div class="portfolio-item group relative aspect-square overflow-hidden bg-gray-100 cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg"
+         data-title="Cozinha Gourmet"
+         data-description="Este projeto de Cozinha Gourmet Planejada destaca-se pelo equilíbrio refinado entre elementos clássicos e contemporâneos. Com marcenaria de alto padrão, o design foi concebido para criar um ambiente atemporal e abundantemente iluminado.."
+         data-images='{
+            "original": "img/cinza medio cozinha.jpeg", 
+            "claro": "img/cinza gelo cozinha.jpeg", 
+            "escuro": "img/azul petroleo cozinha.jpeg"
+         }'>
+        <div class="absolute inset-0 bg-petroleo/60 opacity-0 group-hover:opacity-100 transition-all duration-500 z-10 flex items-center justify-center flex-col p-4 sm:p-6 text-white rounded-lg">
+            <h4 class="text-lg sm:text-xl md:text-2xl font-serif mb-1 sm:mb-2 text-center">Cozinha Gourmet Oliva</h4>
+            <p class="text-xs sm:text-sm font-light text-center">Clique para simular cores</p>
+        </div>
+        <img src="img/cinza medio cozinha.jpeg" 
+             alt="Cozinha Gourmetem cinza médio"
+             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+             loading="lazy">
+    </div>
+
+    <!-- Dormitório Suíte CORRIGIDO -->
+    <div class="portfolio-item group relative aspect-square overflow-hidden bg-gray-100 cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg"
+         data-title="Dormitório Suíte"
+         data-description="Este projeto de Dormitório Planejado foca no máximo conforto e sofisticação visual. A marcenaria utiliza variações de tonalidades neutras e texturas suaves para compor uma atmosfera de relaxamento total."
+         data-images='{
+            "original": "img/QUARTOCinza MédiA-Grafite Claro.jpeg", 
+            "claro": "img/Cinza Gelo-Off-White.jpeg", 
+            "escuro": "img/Azul Petróleo Escuro-Marinho.jpeg"
+         }'>
+        <div class="absolute inset-0 bg-oliva/60 opacity-0 group-hover:opacity-100 transition-all duration-500 z-10 flex items-center justify-center flex-col p-4 sm:p-6 text-white rounded-lg">
+            <h4 class="text-lg sm:text-xl md:text-2xl font-serif mb-1 sm:mb-2 text-center">Dormitório Suíte</h4>
+            <p class="text-xs sm:text-sm font-light text-center">Clique para simular cores</p>
+        </div>
+        <!-- CORREÇÃO: usar o mesmo arquivo do data-images original -->
+        <img src="img/QUARTOCinza MédiA-Grafite Claro.jpeg"
+             alt="Dormitório Suíte em cinza médio grafite claro"
+             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+             loading="lazy">
+    </div>
+
+    <!-- Home Office Moderno CORRIGIDO -->
+    <div class="portfolio-item group relative aspect-square overflow-hidden bg-gray-100 cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg"
+         data-title="Home Office Moderno"
+         data-description="Este projeto de Home Office Planejado une funcionalidade corporativa ao conforto residencial. Desenvolvido com foco em ergonomia e aproveitamento de espaço, o móvel apresenta um acabamento premium, proporcionando uma estética clean e profissional que amplia visualmente o ambiente.."
+         data-images='{
+            "original": "img/cinza escuro.jpeg", 
+            "claro": "img/CINZA CLARO.jpeg", 
+            "escuro": "img/AZULMARINHO.jpeg"
+         }'>
+        <div class="absolute inset-0 bg-musgo/60 opacity-0 group-hover:opacity-100 transition-all duration-500 z-10 flex items-center justify-center flex-col p-4 sm:p-6 text-white rounded-lg">
+            <h4 class="text-lg sm:text-xl md:text-2xl font-serif mb-1 sm:mb-2 text-center">Home Office Moderno</h4>
+            <p class="text-xs sm:text-sm font-light text-center">Clique para simular cores</p>
+        </div>
+        <!-- CORREÇÃO: usar o mesmo arquivo do data-images original -->
+        <img src="img/cinza escuro.jpeg"
+             alt="Home Office Moderno em cinza escuro"
+             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+             loading="lazy">
+    </div>
+
+</div>
+
+</div>
+    </section>
+
+    <!-- Modal de Projeto com responsividade -->
+    <div id="project-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-2 sm:p-4 z-50 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white rounded-lg shadow-2xl overflow-hidden max-w-full sm:max-w-5xl w-full flex flex-col lg:flex-row relative transform scale-95 transition-transform duration-300 mx-2 sm:mx-4">
+            <button class="absolute top-2 sm:top-4 right-2 sm:right-4 text-gray-600 hover:text-gray-900 text-2xl sm:text-3xl font-light leading-none z-10 bg-white/80 rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center" onclick="closeModal()">
+                &times;
+            </button>
+            <div class="lg:w-2/3 bg-gray-100 relative min-h-[200px] sm:min-h-[300px] flex items-center justify-center">
+                <img id="modal-image" src="" alt="Projeto de Móvel" class="max-h-[50vh] sm:max-h-[60vh] md:max-h-[70vh] w-full object-contain p-2 sm:p-4">
+            </div>
+            <div class="lg:w-1/3 p-4 sm:p-6 md:p-8 flex flex-col justify-between">
+                <div>
+                    <h3 id="modal-title" class="text-xl sm:text-2xl md:text-3xl font-serif text-petroleo mb-3 sm:mb-4"></h3>
+                    <p id="modal-description" class="text-gray-700 text-xs sm:text-sm mb-4 sm:mb-6"></p>
+                    
+                    <div class="mb-4 sm:mb-6">
+                        <h4 class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-musgo mb-2 sm:mb-3">Simular Cores:</h4>
+                        <div id="color-options" class="flex gap-2 sm:gap-3 justify-center sm:justify-start">
+                        </div>
+                    </div>
+                </div>
+                <button onclick="openWhatsAppOrcamento('Projeto: ' + document.getElementById('modal-title').textContent)" class="bg-oliva text-white px-4 sm:px-6 py-2 sm:py-3 rounded-sm hover:bg-musgo transition-all duration-300 uppercase text-xs tracking-[0.2em] w-full sm:w-auto text-center">
+                    Solicitar Orçamento
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seção Materiais/Qualidade responsiva -->
+    <section id="materiais" class="py-12 sm:py-16 md:py-20 lg:py-24 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center mobile-stack">
+                <div class="space-y-6 sm:space-y-8 order-2 lg:order-1">
+                    <div>
+                        <h2 class="text-oliva text-xs sm:text-sm font-bold tracking-[0.3em] sm:tracking-[0.4em] uppercase italic mb-2">Excelência & Durabilidade</h2>
+                        <h3 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif text-petroleo leading-tight mobile-text-center lg:text-left">
+                            Sua casa merece <br class="hidden sm:block"> o melhor padrão.
+                        </h3>
+                    </div>
+
+                    <p class="text-gray-600 leading-relaxed text-base sm:text-lg">
+                        Na <strong class="text-petroleo">NF Marcenaria</strong>, cada detalhe é a união entre a precisão tecnológica e a alma do trabalho artesanal. Selecionamos rigorosamente <span class="text-musgo font-medium">MDF de alta densidade</span> e a engenharia das <span class="text-musgo font-medium">ferragens italianas</span> para garantir um movimento silencioso e duradouro aos seus móveis.
+                    </p>
+
+                    <p class="text-gray-600 leading-relaxed text-base sm:text-lg">
+                        Aqui, a sua visão não encontra limites: oferecemos <span class="text-petroleo font-semibold italic text-lg sm:text-xl">personalização absoluta</span> com um catálogo infinito de texturas e tonalidades, permitindo que cada ambiente seja uma expressão única do seu estilo.
+                    </p>
+
+                    <ul class="space-y-4 sm:space-y-5">
+                        <li class="flex items-center group">
+                            <span class="w-8 sm:w-10 h-[1px] bg-oliva mr-3 sm:mr-4 transition-all group-hover:w-10 sm:group-hover:w-14"></span>
+                            <span class="text-xs sm:text-sm font-bold uppercase tracking-widest text-musgo">Infinitas Opções de Acabamentos</span>
+                        </li>
+                        <li class="flex items-center group">
+                            <span class="w-8 sm:w-10 h-[1px] bg-oliva mr-3 sm:mr-4 transition-all group-hover:w-10 sm:group-hover:w-14"></span>
+                            <span class="text-xs sm:text-sm font-bold uppercase tracking-widest text-musgo">Ferragens Premium com Amortecimento</span>
+                        </li>
+                        <li class="flex items-center group">
+                            <span class="w-8 sm:w-10 h-[1px] bg-oliva mr-3 sm:mr-4 transition-all group-hover:w-10 sm:group-hover:w-14"></span>
+                            <span class="text-xs sm:text-sm font-bold uppercase tracking-widest text-musgo">MDF Naval (Resistência à Umidade)</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Formulário responsivo -->
+                <div class="bg-petroleo p-4 sm:p-6 md:p-8 text-white order-1 lg:order-2">
+                    <h4 class="text-xl sm:text-2xl font-serif mb-3 sm:mb-4">Solicite uma medição</h4>
+                    <p class="mb-4 sm:mb-6 opacity-80 text-sm sm:text-base">Deixe seus dados e entraremos em contato para transformar sua ideia em realidade.</p>
+                    <form class="space-y-3 sm:space-y-4" id="medicaoForm" onsubmit="return enviarSolicitacaoMedicao(event)">
+                        <input type="text" id="nome-medicao" placeholder="Seu Nome" class="w-full p-2 sm:p-3 bg-white/10 border border-white/20 focus:border-oliva outline-none transition text-sm sm:text-base" required>
+                        <input type="tel" id="telefone-medicao" placeholder="Seu WhatsApp" class="w-full p-2 sm:p-3 bg-white/10 border border-white/20 focus:border-oliva outline-none transition text-sm sm:text-base" required>
+                        <input type="email" id="email-medicao" placeholder="Seu E-mail" class="w-full p-2 sm:p-3 bg-white/10 border border-white/20 focus:border-oliva outline-none transition text-sm sm:text-base" required>
+                        <textarea id="descricao-medicao" placeholder="Descreva brevemente seu projeto..." class="w-full p-2 sm:p-3 bg-white/10 border border-white/20 focus:border-oliva outline-none transition h-24 sm:h-32 text-sm sm:text-base" rows="3"></textarea>
+                        <button type="submit" class="w-full py-3 sm:py-4 bg-oliva hover:bg-musgo transition font-bold uppercase text-xs tracking-[0.2em] flex items-center justify-center gap-2">
+                            <i class="fab fa-whatsapp"></i>
+                            Enviar para WhatsApp
+                        </button>
+                        <p class="text-xs text-white/60 text-center mt-1 sm:mt-2">Ao clicar, você será redirecionado para o WhatsApp</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guia de Acabamentos responsivo -->
+    <section id="guia-acabamentos" class="py-12 sm:py-16 md:py-20 lg:py-24 bg-petroleo text-white">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center mb-8 sm:mb-12 md:mb-16">
+                <h2 class="text-oliva text-xs sm:text-sm font-bold tracking-[0.3em] uppercase mb-3 sm:mb-4">Personalização</h2>
+                <h3 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif mobile-text-center">Guia de Acabamentos</h3>
+                <p class="mt-3 sm:mt-4 text-white/60 max-w-2xl mx-auto text-sm sm:text-base px-4">
+                    Explore as texturas e tecnologias disponíveis para cada ambiente da sua casa. Clique em um acabamento para ver detalhes.
+                </p>
+            </div>
+
+            <!-- Filtros responsivos -->
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-8 sm:mb-10 md:mb-12">
+                <button onclick="filterAcabamentos('todos')" class="ambiente-btn active-btn px-3 sm:px-4 md:px-6 py-2 sm:py-3 border border-oliva bg-oliva text-white text-xs sm:text-sm font-semibold tracking-wider transition-all rounded-sm">Todos</button>
+                <button onclick="filterAcabamentos('cozinha')" class="ambiente-btn px-3 sm:px-4 md:px-6 py-2 sm:py-3 border border-white/20 hover:border-oliva hover:bg-oliva/10 text-xs sm:text-sm font-semibold tracking-wider transition-all rounded-sm">Cozinha</button>
+                <button onclick="filterAcabamentos('banheiro')" class="ambiente-btn px-3 sm:px-4 md:px-6 py-2 sm:py-3 border border-white/20 hover:border-oliva hover:bg-oliva/10 text-xs sm:text-sm font-semibold tracking-wider transition-all rounded-sm">Banheiro</button>
+                <button onclick="filterAcabamentos('dormitorio')" class="ambiente-btn px-3 sm:px-4 md:px-6 py-2 sm:py-3 border border-white/20 hover:border-oliva hover:bg-oliva/10 text-xs sm:text-sm font-semibold tracking-wider transition-all rounded-sm">Dormitório</button>
+                <button onclick="filterAcabamentos('sala')" class="ambiente-btn px-3 sm:px-4 md:px-6 py-2 sm:py-3 border border-white/20 hover:border-oliva hover:bg-oliva/10 text-xs sm:text-sm font-semibold tracking-wider transition-all rounded-sm">Sala</button>
+                <button onclick="filterAcabamentos('escritorio')" class="ambiente-btn px-3 sm:px-4 md:px-6 py-2 sm:py-3 border border-white/20 hover:border-oliva hover:bg-oliva/10 text-xs sm:text-sm font-semibold tracking-wider transition-all rounded-sm">Escritório</button>
+                <button onclick="filterAcabamentos('area-externa')" class="ambiente-btn px-3 sm:px-4 md:px-6 py-2 sm:py-3 border border-white/20 hover:border-oliva hover:bg-oliva/10 text-xs sm:text-sm font-semibold tracking-wider transition-all rounded-sm">Externa</button>
+            </div>
+
+            <!-- Container dos Cards de Acabamento -->
+            <div id="acabamentos-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+                <!-- Cards de acabamentos - gerados dinamicamente pelo JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Detalhes do Acabamento responsivo -->
+    <div id="acabamento-modal" class="fixed inset-0 bg-black/90 flex items-center justify-center p-2 sm:p-4 z-[100] opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-white rounded-sm shadow-2xl overflow-hidden max-w-full sm:max-w-4xl w-full max-h-[90vh] overflow-y-auto transform scale-95 transition-transform duration-300 mx-2 sm:mx-4">
+            <button class="absolute top-2 sm:top-4 right-2 sm:right-4 text-white bg-petroleo/80 hover:bg-petroleo w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full z-20 text-xl sm:text-2xl" onclick="closeAcabamentoDetail()">
+                &times;
+            </button>
+            
+            <div id="acabamento-modal-content" class="p-0">
+                <!-- Conteúdo será preenchido via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer totalmente responsivo -->
+    <footer class="bg-[#003333] text-white pt-8 sm:pt-12 md:pt-16 pb-6 sm:pb-8">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10 mb-8 sm:mb-10 md:mb-12">
+                <!-- Logo e Sobre -->
+                <div class="space-y-4 sm:space-y-6">
+                    <div class="text-2xl sm:text-3xl font-serif font-bold italic tracking-wide text-center md:text-left">
+                        <span class="text-white">NF</span>
+                        <span class="text-oliva"> Móveis</span>
+                    </div>
+                    <p class="text-white/70 text-xs sm:text-sm leading-relaxed text-center md:text-left">
+                        Criamos móveis planejados que unem funcionalidade, design e durabilidade. Transformamos sua visão em ambientes únicos e personalizados.
+                    </p>
+                    <div class="flex space-x-3 sm:space-x-4 pt-2 sm:pt-4 justify-center md:justify-start">
+                        <a href="https://www.instagram.com" target="_blank" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 hover:bg-oliva rounded-full flex items-center justify-center transition-all duration-300 text-sm sm:text-base">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/5511999999999?text=Olá! Gostaria de solicitar um orçamento da NF Móveis Planejados." target="_blank" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 hover:bg-oliva rounded-full flex items-center justify-center transition-all duration-300 text-sm sm:text-base">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.facebook.com" target="_blank" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 hover:bg-oliva rounded-full flex items-center justify-center transition-all duration-300 text-sm sm:text-base">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.pinterest.com" target="_blank" class="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 hover:bg-oliva rounded-full flex items-center justify-center transition-all duration-300 text-sm sm:text-base">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Links Rápidos -->
+                <div class="text-center md:text-left">
+                    <h4 class="text-base sm:text-lg font-serif font-bold mb-4 sm:mb-6 pb-2 border-b border-oliva/30 inline-block">Links Rápidos</h4>
+                    <ul class="space-y-2 sm:space-y-3">
+                        <li><a href="#home" class="text-white/70 hover:text-oliva transition-colors flex items-center justify-center md:justify-start group">
+                            <span class="w-2 h-[1px] bg-oliva mr-2 sm:mr-3 group-hover:w-3 sm:group-hover:w-4 transition-all"></span>
+                            Início
+                        </a></li>
+                        <li><a href="#portfolio" class="text-white/70 hover:text-oliva transition-colors flex items-center justify-center md:justify-start group">
+                            <span class="w-2 h-[1px] bg-oliva mr-2 sm:mr-3 group-hover:w-3 sm:group-hover:w-4 transition-all"></span>
+                            Portfólio
+                        </a></li>
+                        <li><a href="#materiais" class="text-white/70 hover:text-oliva transition-colors flex items-center justify-center md:justify-start group">
+                            <span class="w-2 h-[1px] bg-oliva mr-2 sm:mr-3 group-hover:w-3 sm:group-hover:w-4 transition-all"></span>
+                            Contato
+                        </a></li>
+                        <li><button onclick="openCatalogoModal()" class="text-white/70 hover:text-oliva transition-colors flex items-center justify-center md:justify-start group w-full text-left">
+                            <span class="w-2 h-[1px] bg-oliva mr-2 sm:mr-3 group-hover:w-3 sm:group-hover:w-4 transition-all"></span>
+                            Catálogo de Cores
+                        </button></li>
+                        <li><a href="#guia-acabamentos" class="text-white/70 hover:text-oliva transition-colors flex items-center justify-center md:justify-start group">
+                            <span class="w-2 h-[1px] bg-oliva mr-2 sm:mr-3 group-hover:w-3 sm:group-hover:w-4 transition-all"></span>
+                            Acabamentos
+                        </a></li>
+                    </ul>
+                </div>
+
+                <!-- Serviços -->
+                <div class="text-center md:text-left">
+                    <h4 class="text-base sm:text-lg font-serif font-bold mb-4 sm:mb-6 pb-2 border-b border-oliva/30 inline-block">Nossos Serviços</h4>
+                    <ul class="space-y-2 sm:space-y-3">
+                        <li class="text-white/70 hover:text-oliva transition-colors flex items-center justify-center md:justify-start group">
+                            <i class="fas fa-ruler-combined text-oliva mr-2 sm:mr-3 text-xs sm:text-sm"></i>
+                            Móveis Planejados
+                        </li>
+                        <li class="text-white/70 hover:text-oliva transition-colors flex items-center justify-center md:justify-start group">
+                            <i class="fas fa-paint-roller text-oliva mr-2 sm:mr-3 text-xs sm:text-sm"></i>
+                            Design de Interiores
+                        </li>
+                        <li class="text-white/70 hover:text-oliva transition-colors flex items-center justify-center md:justify-start group">
+                            <i class="fas fa-toolbox text-oliva mr-2 sm:mr-3 text-xs sm:text-sm"></i>
+                            Marcenaria Customizada
+                        </li>
+                        <li class="text-white/70 hover:text-oliva transition-colors flex items-center justify-center md:justify-start group">
+                            <i class="fas fa-home text-oliva mr-2 sm:mr-3 text-xs sm:text-sm"></i>
+                            Reforma e Adequação
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contato -->
+                <div class="text-center md:text-left">
+                    <h4 class="text-base sm:text-lg font-serif font-bold mb-4 sm:mb-6 pb-2 border-b border-oliva/30 inline-block">Entre em Contato</h4>
+                    <ul class="space-y-2 sm:space-y-3 md:space-y-4">
+                        <li class="flex items-start justify-center md:justify-start">
+                            <i class="fas fa-map-marker-alt text-oliva mr-2 sm:mr-3 mt-0.5 text-xs sm:text-sm"></i>
+                            <span class="text-white/70 text-xs sm:text-sm">
+                                Av. Exemplo, 1234 - Centro<br>
+                                São Paulo/SP - CEP: 01234-567
+                            </span>
+                        </li>
+                        <li class="flex items-center justify-center md:justify-start">
+                            <i class="fas fa-phone text-oliva mr-2 sm:mr-3 text-xs sm:text-sm"></i>
+                            <span class="text-white/70 text-xs sm:text-sm">(11) 99999-9999</span>
+                        </li>
+                        <li class="flex items-center justify-center md:justify-start">
+                            <i class="fas fa-envelope text-oliva mr-2 sm:mr-3 text-xs sm:text-sm"></i>
+                            <span class="text-white/70 text-xs sm:text-sm">contato@nfmoveis.com</span>
+                        </li>
+                        <li class="flex items-center justify-center md:justify-start">
+                            <i class="fas fa-clock text-oliva mr-2 sm:mr-3 text-xs sm:text-sm"></i>
+                            <span class="text-white/70 text-xs sm:text-sm">Seg-Sex: 8h às 18h<br>Sáb: 9h às 13h</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Rodapé Inferior Centralizado -->
+            <div class="pt-6 sm:pt-8 border-t border-white/10">
+                <div class="flex flex-col justify-center items-center gap-4 sm:gap-6">
+                    <div class="text-center">
+                        <p class="text-white/50 text-xs sm:text-sm">
+                            © 2026 NF Móveis Planejados. Todos os direitos reservados.<br>
+                            <span class="block">CNPJ: 12.345.678/0001-99</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<script>
+    // Dados do catálogo de cores
+    const coresData = [
+        // Duratex
+        { nome: "Branco Diamante", marca: "Duratex", cor: "#F8F8F8" },
+        { nome: "Freijó Puro", marca: "Duratex", cor: "#D4A574" },
+        { nome: "Azul Secreto", marca: "Duratex", cor: "#4A6FA5" },
+        { nome: "Cumaru", marca: "Duratex", cor: "#8B6F47" },
+        { nome: "Gianduia", marca: "Duratex", cor: "#6B4423" },
+        { nome: "Nogueira Caiena", marca: "Duratex", cor: "#5C4033" },
+        { nome: "Absoluto", marca: "Duratex", cor: "#2C2C2C" },
+        { nome: "Metrópole", marca: "Duratex", cor: "#4A4A4A" },
+        { nome: "Trancoso", marca: "Duratex", cor: "#A0826D" },
+        { nome: "Marsala", marca: "Duratex", cor: "#8B4545" },
+        { nome: "Álamo", marca: "Duratex", cor: "#C4B5A0" },
+        { nome: "Carvalho Malva", marca: "Duratex", cor: "#9B7653" },
+        { nome: "Carvalho Hanôver", marca: "Duratex", cor: "#A8956A" },
+        { nome: "Pérola Urbana", marca: "Duratex", cor: "#E8E8E8" },
+        { nome: "Cinza Sagrado", marca: "Duratex", cor: "#5A5A5A" },
+        
+        // Arauco
+        { nome: "Louro Freijó", marca: "Arauco", cor: "#B8956A" },
+        { nome: "Carvalho Mel", marca: "Arauco", cor: "#D4A574" },
+        { nome: "Cinza Sagrado", marca: "Arauco", cor: "#5A5A5A" },
+        { nome: "Verde Floresta", marca: "Arauco", cor: "#2D5016" },
+        { nome: "Sucupira", marca: "Arauco", cor: "#704214" },
+        { nome: "Jatobá", marca: "Arauco", cor: "#6B4423" },
+        { nome: "Pau-Ferro", marca: "Arauco", cor: "#3D2817" },
+        { nome: "Pedras", marca: "Arauco", cor: "#A9A9A9" },
+        { nome: "Metais", marca: "Arauco", cor: "#C0C0C0" },
+        { nome: "Renova", marca: "Arauco", cor: "#F5F5F5" },
+        { nome: "Azul Sereno", marca: "Arauco", cor: "#4A90E2" },
+        { nome: "Gris", marca: "Arauco", cor: "#6B6B6B" },
+        { nome: "Grafite", marca: "Arauco", cor: "#4A4A4A" },
+        { nome: "Off White", marca: "Arauco", cor: "#F0F0F0" },
+        
+        // Berneck
+        { nome: "Carvalho Treviso", marca: "Berneck", cor: "#A8956A" },
+        { nome: "Louro Canela", marca: "Berneck", cor: "#C4A574" },
+        { nome: "Nogueira", marca: "Berneck", cor: "#5C4033" },
+        { nome: "Frassino", marca: "Berneck", cor: "#D4C5B9" },
+        { nome: "Metallic", marca: "Berneck", cor: "#C0C0C0" },
+        { nome: "Argento", marca: "Berneck", cor: "#D3D3D3" },
+        { nome: "Preto", marca: "Berneck", cor: "#1A1A1A" },
+        { nome: "Chumbo", marca: "Berneck", cor: "#4A4A4A" },
+        { nome: "Azul", marca: "Berneck", cor: "#4A6FA5" },
+        { nome: "Verde", marca: "Berneck", cor: "#2D5016" },
+        { nome: "Rosa", marca: "Berneck", cor: "#D4A5A5" },
+        { nome: "Branco", marca: "Berneck", cor: "#F5F5F5" },
+        { nome: "Cinza", marca: "Berneck", cor: "#D3D3D3" },
+        
+        // Eucatex
+        { nome: "Branco", marca: "Eucatex", cor: "#F5F5F5" },
+        { nome: "Freijó", marca: "Eucatex", cor: "#D4A574" },
+        { nome: "Lacca", marca: "Eucatex", cor: "#FAFAFA" },
+        { nome: "Matt", marca: "Eucatex", cor: "#E8E0D0" },
+        { nome: "Metallic", marca: "Eucatex", cor: "#C0C0C0" },
+        { nome: "Wood", marca: "Eucatex", cor: "#8B6F47" },
+        { nome: "Natural", marca: "Eucatex", cor: "#C4B5A0" },
+        { nome: "Noce", marca: "Eucatex", cor: "#6B4423" },
+        { nome: "Carvalho", marca: "Eucatex", cor: "#A8956A" },
+        { nome: "Teka", marca: "Eucatex", cor: "#9B7653" },
+        { nome: "Cinza", marca: "Eucatex", cor: "#D3D3D3" },
+        { nome: "Bege", marca: "Eucatex", cor: "#E8E0D0" },
+        { nome: "Concreto", marca: "Eucatex", cor: "#A9A9A9" },
+        { nome: "Azul", marca: "Eucatex", cor: "#4A6FA5" },
+        { nome: "Verde", marca: "Eucatex", cor: "#2D5016" },
+        
+        // Guararapes
+        { nome: "Areia", marca: "Guararapes", cor: "#D4C5B9" },
+        { nome: "Grafite", marca: "Guararapes", cor: "#4A4A4A" },
+        { nome: "Preto Supreme", marca: "Guararapes", cor: "#1A1A1A" },
+        { nome: "Savana", marca: "Guararapes", cor: "#C4B5A0" },
+        { nome: "Imbuia", marca: "Guararapes", cor: "#8B6F47" },
+        { nome: "Alecrim", marca: "Guararapes", cor: "#2D5016" },
+        { nome: "Rosa Milkshake", marca: "Guararapes", cor: "#F0B3D4" },
+        { nome: "Azul Petróleo", marca: "Guararapes", cor: "#1B4965" },
+        { nome: "Magma", marca: "Guararapes", cor: "#8B4545" },
+        { nome: "Metalic", marca: "Guararapes", cor: "#C0C0C0" },
+        { nome: "Naturale", marca: "Guararapes", cor: "#F5F5F5" },
+        { nome: "Freijó Puro", marca: "Guararapes", cor: "#D4A574" },
+        { nome: "Nogal", marca: "Guararapes", cor: "#5C4033" },
+        { nome: "Carvalho", marca: "Guararapes", cor: "#A8956A" },
+        { nome: "Vermont", marca: "Guararapes", cor: "#9B7653" },
+        
+        // Sudati
+        { nome: "Carvalho", marca: "Sudati", cor: "#A8956A" },
+        { nome: "Nogueira", marca: "Sudati", cor: "#5C4033" },
+        { nome: "Cinza", marca: "Sudati", cor: "#D3D3D3" },
+        { nome: "Bege", marca: "Sudati", cor: "#E8E0D0" },
+        { nome: "Nature", marca: "Sudati", cor: "#C4B5A0" },
+        { nome: "Minimalista", marca: "Sudati", cor: "#F5F5F5" },
+        { nome: "Industrial", marca: "Sudati", cor: "#4A4A4A" },
+        { nome: "Glamour", marca: "Sudati", cor: "#C0C0C0" },
+        { nome: "Urban", marca: "Sudati", cor: "#6B6B6B" },
+        { nome: "Duna", marca: "Sudati", cor: "#D4C5B9" },
+        { nome: "Boreal", marca: "Sudati", cor: "#8B6F47" },
+        { nome: "Concreto", marca: "Sudati", cor: "#A9A9A9" }
+    ];
+
+    // Variáveis globais para filtro
+    let currentFilter = 'todos';
+    let currentBrand = 'todos';
+
+    // Gerar cards de cores
+    function generateCoresCards() {
+        const container = document.getElementById('cores-container');
+        container.innerHTML = '';
+
+        let coresFiltradas = coresData;
+        
+        // Aplicar filtro de marca se selecionado
+        if (currentBrand !== 'todos') {
+            coresFiltradas = coresFiltradas.filter(cor => cor.marca === currentBrand);
+        }
+
+        coresFiltradas.forEach(cor => {
+            const card = document.createElement('div');
+            card.className = 'cor-card bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow duration-300';
+            
+            // Converter cor HEX para RGB para calcular brilho
+            const hex = cor.cor.replace('#', '');
+            const r = parseInt(hex.substr(0, 2), 16);
+            const g = parseInt(hex.substr(2, 2), 16);
+            const b = parseInt(hex.substr(4, 2), 16);
+            
+            // Calcular brilho para determinar cor do texto
+            const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+            const textColor = brightness > 128 ? '#000000' : '#FFFFFF';
+
+            card.innerHTML = `
+                <div class="h-24 sm:h-32 w-full flex items-center justify-center relative group" 
+                     style="background-color: ${cor.cor};">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
+                    <div class="relative z-10 text-center p-2">
+                        <div class="text-xs sm:text-sm font-semibold mb-1" style="color: ${textColor};">${cor.nome}</div>
+                        <div class="text-[10px] sm:text-xs opacity-80" style="color: ${textColor};">${cor.marca}</div>
+                    </div>
+                </div>
+                <div class="p-2 sm:p-3">
+                    <div class="flex justify-between items-center mb-1">
+                        <div class="text-[10px] sm:text-xs font-medium text-gray-700">${cor.marca}</div>
+                        <div class="text-[10px] sm:text-xs text-gray-500 font-mono">${cor.cor}</div>
+                    </div>
+                    <div class="text-xs sm:text-sm font-semibold text-gray-900 truncate">${cor.nome}</div>
+                </div>
+            `;
+
+            // Adicionar funcionalidade de clique para copiar cor
+            card.addEventListener('click', function() {
+                copyColorToClipboard(cor.cor, cor.nome);
+            });
+
+            container.appendChild(card);
+        });
+
+        // Atualizar contador
+        const countText = document.getElementById('current-filter-text');
+        if (currentBrand !== 'todos') {
+            countText.textContent = `Exibindo ${coresFiltradas.length} cores de ${currentBrand}`;
+        } else {
+            countText.textContent = `Exibindo ${coresFiltradas.length} cores`;
+        }
+    }
+
+    // Filtrar cores por categoria
+    function filterCores(categoria) {
+        currentFilter = categoria;
+        
+        // Atualizar botões ativos
+        document.querySelectorAll('.categoria-btn').forEach(btn => {
+            btn.classList.remove('active-cat-btn', 'bg-oliva', 'text-white');
+            btn.classList.add('bg-gray-100', 'text-gray-700');
+        });
+        
+        event.currentTarget.classList.add('active-cat-btn', 'bg-oliva', 'text-white');
+        event.currentTarget.classList.remove('bg-gray-100', 'text-gray-700');
+
+        // Mostrar/ocultar filtros de marca
+        const marcaFiltros = document.getElementById('marca-filtros');
+        if (categoria === 'marca') {
+            marcaFiltros.classList.remove('hidden');
+            // Resetar filtro de marca
+            currentBrand = 'todos';
+            document.querySelectorAll('.marca-btn').forEach(btn => {
+                btn.classList.remove('active-marca-btn', 'bg-petroleo', 'text-white');
+                btn.classList.add('bg-gray-100', 'text-gray-700');
+            });
+            document.querySelector('.marca-btn').classList.add('active-marca-btn', 'bg-petroleo', 'text-white');
+        } else {
+            marcaFiltros.classList.add('hidden');
+            currentBrand = 'todos';
+        }
+
+        generateCoresCards();
+    }
+
+    // Filtrar por marca
+    function filterByBrand(marca) {
+        currentBrand = marca;
+        
+        // Atualizar botões ativos
+        document.querySelectorAll('.marca-btn').forEach(btn => {
+            btn.classList.remove('active-marca-btn', 'bg-petroleo', 'text-white');
+            btn.classList.add('bg-gray-100', 'text-gray-700');
+        });
+        
+        event.currentTarget.classList.add('active-marca-btn', 'bg-petroleo', 'text-white');
+        event.currentTarget.classList.remove('bg-gray-100', 'text-gray-700');
+
+        generateCoresCards();
+    }
+
+    // Copiar cor para clipboard
+    function copyColorToClipboard(hexColor, nomeCor) {
+        navigator.clipboard.writeText(hexColor).then(() => {
+            // Mostrar notificação
+            showNotification(`Cor ${nomeCor} copiada: ${hexColor}`);
+        }).catch(err => {
+            console.error('Erro ao copiar cor:', err);
+            showNotification('Erro ao copiar cor. Tente novamente.');
+        });
+    }
+
+    // Mostrar notificação
+    function showNotification(message) {
+        // Remover notificação existente
+        const existingNotification = document.querySelector('.color-notification');
+        if (existingNotification) {
+            existingNotification.remove();
+        }
+
+        // Criar nova notificação
+        const notification = document.createElement('div');
+        notification.className = 'color-notification fixed top-4 right-4 bg-petroleo text-white px-4 py-3 rounded-lg shadow-lg z-[1000] animate-fade-in';
+        notification.innerHTML = `
+            <div class="flex items-center">
+                <i class="fas fa-palette mr-2"></i>
+                <span class="text-sm">${message}</span>
+            </div>
+        `;
+
+        document.body.appendChild(notification);
+
+        // Remover após 3 segundos
+        setTimeout(() => {
+            notification.classList.add('opacity-0', 'transition-opacity', 'duration-300');
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 300);
+        }, 3000);
+    }
+
+    // Abrir modal de catálogo
+    function openCatalogoModal() {
+        const modal = document.getElementById('catalogo-modal');
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        modal.querySelector('div').classList.remove('scale-95');
+        document.body.style.overflow = 'hidden';
+        
+        // Fechar menu mobile se estiver aberto
+        document.getElementById('mobile-menu').classList.add('mobile-menu-hidden');
+        document.getElementById('mobile-menu-button').querySelector('i').classList.remove('fa-times');
+        document.getElementById('mobile-menu-button').querySelector('i').classList.add('fa-bars');
+        
+        // Gerar cards na primeira vez
+        if (document.getElementById('cores-container').children.length === 0) {
+            generateCoresCards();
+        }
+    }
+
+    // Fechar modal de catálogo
+    function closeCatalogoModal() {
+        const modal = document.getElementById('catalogo-modal');
+        modal.classList.add('opacity-0', 'pointer-events-none');
+        modal.querySelector('div').classList.add('scale-95');
+        document.body.style.overflow = '';
+    }
+
+    // Fechar modal ao clicar fora
+    document.getElementById('catalogo-modal').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('catalogo-modal')) {
+            closeCatalogoModal();
+        }
+    });
+
+    // Dados completos para todos os tipos de acabamento
+    const acabamentosData = {
+        'lacca': {
+            title: 'Lacca Brilhante',
+            image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop&crop=center',
+            description: 'Brilho espelhado e profundidade de cor. Ideal para quem busca um visual moderno, luxuoso e fácil de limpar. Resistente à umidade e manchas.',
+            caracteristicas: [
+                'Brilho intenso e profundo',
+                'Fácil limpeza e manutenção',
+                'Resistente a umidade e manchas',
+                'Disponível em todas as cores da paleta NF'
+            ],
+            ambientes: ['Cozinha', 'Banheiro', 'Sala de Estar'],
+            manutencao: 'Limpar com pano macio e produtos específicos para superfícies brilhantes.',
+            durabilidade: 'Alta (8-10 anos)',
+            tags: ['Moderno', 'Luxuoso', 'Fácil Limpeza'],
+            badge: 'Mais Popular',
+            badgeColor: 'oliva'
+        },
+        'acetinado': {
+            title: 'Acetinado Fosco',
+            image: 'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?q=80&w=2070&auto=format&fit=crop&crop=center',
+            description: 'Toque sedoso e fosco. Não marca digitais e traz uma sensação de conforto e sobriedade. Ideal para ambientes de descanso e concentração.',
+            caracteristicas: [
+                'Superfície fosca e suave',
+                'Não reflete luz direta',
+                'Esconde pequenas imperfeições',
+                'Toque agradável ao contato'
+            ],
+            ambientes: ['Dormitório', 'Escritório', 'Biblioteca'],
+            manutencao: 'Limpeza com pano seco ou levemente úmido.',
+            durabilidade: 'Média-Alta (7-9 anos)',
+            tags: ['Elegante', 'Discreto', 'Confortável'],
+            badge: 'Elegante',
+            badgeColor: 'petroleo'
+        },
+        'metalizado': {
+            title: 'Acabamento Metalizado',
+            image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=2070&auto=format&fit=crop&crop=center',
+            description: 'Toque industrial e contemporâneo. Pigmentos metálicos que reagem à iluminação, criando um efeito dinâmico. Resistente a intempéries.',
+            caracteristicas: [
+                'Efeito visual dinâmico',
+                'Resistente a intempéries',
+                'Toque industrial moderno',
+                'Reflete luz de forma única'
+            ],
+            ambientes: ['Cozinha', 'Área Externa', 'Lojas Comerciais'],
+            manutencao: 'Limpar com produtos neutros e evitar abrasivos.',
+            durabilidade: 'Alta (9-11 anos)',
+            tags: ['Industrial', 'Moderno', 'Resistente'],
+            badge: 'Tendência',
+            badgeColor: 'dourado'
+        },
+        'madeira-natural': {
+            title: 'Madeira Natural',
+            image: 'https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?q=80&w=2070&auto=format&fit=crop&crop=center',
+            description: 'Verniz de alta proteção que realça as fibras naturais da madeira. Oferece calor e personalidade única a cada peça.',
+            caracteristicas: [
+                'Realça fibras naturais',
+                'Proteção contra umidade',
+                'Acabamento atemporal',
+                'Personalidade única'
+            ],
+            ambientes: ['Sala', 'Dormitório', 'Escritório'],
+            manutencao: 'Tratamento específico para madeira a cada 2 anos.',
+            durabilidade: 'Média (6-8 anos)',
+            tags: ['Natural', 'Clássico', 'Atemporal'],
+            badge: 'Clássico',
+            badgeColor: 'musgo'
+        },
+        'texturizado': {
+            title: 'Acabamento Texturizado',
+            image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2058&auto=format&fit=crop&crop=center',
+            description: 'Superfície com micro-relevo que proporciona maior aderência. Ideal para áreas úmidas ou que necessitam de segurança extra.',
+            caracteristicas: [
+                'Superfície antiderrapante',
+                'Esconde marcas de uso',
+                'Toque tátil diferenciado',
+                'Resistente a impactos'
+            ],
+            ambientes: ['Banheiro', 'Cozinha', 'Área Externa'],
+            manutencao: 'Limpeza com escova macia e água corrente.',
+            durabilidade: 'Alta (10-12 anos)',
+            tags: ['Seguro', 'Prático', 'Durável'],
+            badge: 'Antiderrapante',
+            badgeColor: 'dourado'
+        },
+        'verniz-mate': {
+            title: 'Verniz Mate',
+            image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=2069&auto=format&fit=crop&crop=center',
+            description: 'Proteção sem brilho. Esconde pequenas imperfeições e oferece uma estética clean e minimalista. Fácil manutenção.',
+            caracteristicas: [
+                'Acabamento sem brilho',
+                'Esconde imperfeições',
+                'Estética minimalista',
+                'Fácil manutenção'
+            ],
+            ambientes: ['Escritório', 'Sala', 'Dormitório'],
+            manutencao: 'Limpeza simples com pano seco.',
+            durabilidade: 'Média (5-7 anos)',
+            tags: ['Minimalista', 'Clean', 'Prático'],
+            badge: 'Discreto',
+            badgeColor: 'musgo'
+        }
+    };
+
+    // Mapeamento de ambientes para cada acabamento
+    const ambientesMapping = {
+        'lacca': ['cozinha', 'banheiro', 'dormitorio', 'sala'],
+        'acetinado': ['dormitorio', 'sala', 'escritorio'],
+        'metalizado': ['cozinha', 'banheiro', 'area-externa'],
+        'madeira-natural': ['sala', 'dormitorio', 'escritorio'],
+        'texturizado': ['banheiro', 'cozinha', 'area-externa'],
+        'verniz-mate': ['escritorio', 'sala', 'dormitorio']
+    };
+
+    // Gerar cards de acabamentos com layout corrigido
+    function generateAcabamentosCards() {
+        const container = document.getElementById('acabamentos-container');
+        container.innerHTML = '';
+
+        for (const [key, data] of Object.entries(acabamentosData)) {
+            const ambientes = ambientesMapping[key] || [];
+            const ambienteTags = ambientes.map(amb => 
+                `<span class="text-xs px-2 py-1 bg-petroleo/50 rounded">${amb.replace('-', ' ').charAt(0).toUpperCase() + amb.slice(1).replace('-', ' ')}</span>`
+            ).join('');
+
+            const badgeColorClass = {
+                'oliva': 'bg-oliva/90 text-white',
+                'petroleo': 'bg-petroleo/90 text-white',
+                'dourado': 'bg-dourado/90 text-black',
+                'musgo': 'bg-musgo/90 text-white'
+            }[data.badgeColor] || 'bg-oliva/90 text-white';
+
+            const card = document.createElement('div');
+            card.className = 'acabamento-card bg-white/5 p-4 sm:p-6 border border-white/10 hover:border-oliva transition-all duration-300 group cursor-pointer animate-fade-in';
+            card.setAttribute('data-ambientes', ambientes.join(','));
+            card.setAttribute('data-key', key);
+            card.onclick = () => openAcabamentoDetail(key);
+
+            card.innerHTML = `
+                <div class="card-image-container">
+                    <img src="${data.image}" 
+                         alt="${data.title}" 
+                         class="card-image group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute top-3 sm:top-4 left-3 sm:left-4 ${badgeColorClass} px-2 sm:px-3 py-1 text-xs font-bold uppercase tracking-widest z-10">${data.badge}</div>
+                </div>
+                <div class="card-content">
+                    <div class="card-text pt-4 sm:pt-6">
+                        <div class="flex items-start mb-3 sm:mb-4">
+                            <div class="w-8 h-8 sm:w-10 sm:h-10 mr-3 sm:mr-4 flex items-center justify-center bg-oliva/20 text-oliva group-hover:bg-oliva group-hover:text-white transition-colors flex-shrink-0">
+                                <span class="text-lg sm:text-xl font-bold">${key.charAt(0).toUpperCase()}</span>
+                            </div>
+                            <div>
+                                <h4 class="text-lg sm:text-xl md:text-2xl font-serif mb-1">${data.title}</h4>
+                                <div class="flex flex-wrap gap-1 sm:gap-2 mt-2">
+                                    ${ambienteTags}
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-sm text-white/70 leading-relaxed mb-4 sm:mb-6">${data.description}</p>
+                    </div>
+                    <div class="flex justify-between items-center pt-3 sm:pt-4 border-t border-white/10 mt-3 sm:mt-4">
+                        <span class="text-xs font-bold uppercase tracking-widest text-oliva">${data.tags[0]}</span>
+                        <button class="text-oliva hover:text-white text-xs sm:text-sm font-semibold transition-colors">Ver detalhes →</button>
+                    </div>
+                </div>
+            `;
+
+            container.appendChild(card);
+        }
+    }
+
+    // Filtrar acabamentos por ambiente
+    function filterAcabamentos(ambiente) {
+        // Atualizar botões ativos
+        document.querySelectorAll('.ambiente-btn').forEach(btn => {
+            btn.classList.remove('active-btn');
+            btn.classList.add('border-white/20');
+        });
+        
+        event.currentTarget.classList.add('active-btn');
+        event.currentTarget.classList.remove('border-white/20');
+
+        // Filtrar cards
+        const cards = document.querySelectorAll('.acabamento-card');
+        cards.forEach(card => {
+            const cardAmbientes = card.getAttribute('data-ambientes').split(',');
+            
+            if (ambiente === 'todos' || cardAmbientes.includes(ambiente)) {
+                card.style.display = 'flex';
+                card.style.animation = 'fadeIn 0.5s ease-in-out';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    // Abrir modal de detalhes com responsividade
+    function openAcabamentoDetail(key) {
+        const data = acabamentosData[key];
+        const modal = document.getElementById('acabamento-modal');
+        const content = document.getElementById('acabamento-modal-content');
+
+        content.innerHTML = `
+            <div class="grid grid-cols-1 lg:grid-cols-2">
+                <div class="lg:min-h-[400px] sm:min-h-[300px] overflow-hidden">
+                    <img src="${data.image}" alt="${data.title}" class="w-full h-full object-cover">
+                </div>
+                <div class="p-4 sm:p-6 md:p-8">
+                    <h3 class="text-xl sm:text-2xl md:text-3xl font-serif text-petroleo mb-2">${data.title}</h3>
+                    <p class="text-gray-600 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">${data.description}</p>
+                    
+                    <div class="mb-4 sm:mb-6">
+                        <h4 class="text-xs sm:text-sm font-semibold uppercase tracking-widest text-oliva mb-2 sm:mb-3">Características:</h4>
+                        <ul class="space-y-1 sm:space-y-2">
+                            ${data.caracteristicas.map(item => `
+                                <li class="flex items-start">
+                                    <span class="w-2 h-2 bg-oliva mt-2 mr-2 sm:mr-3 flex-shrink-0"></span>
+                                    <span class="text-sm text-gray-700">${item}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
+                        <div class="bg-gray-50 p-3 sm:p-4 rounded">
+                            <h5 class="text-xs font-bold uppercase tracking-widest text-petroleo mb-1">Ambientes Indicados</h5>
+                            <p class="text-sm text-gray-700">${data.ambientes.join(', ')}</p>
+                        </div>
+                        <div class="bg-gray-50 p-3 sm:p-4 rounded">
+                            <h5 class="text-xs font-bold uppercase tracking-widest text-petroleo mb-1">Durabilidade</h5>
+                            <p class="text-sm text-gray-700">${data.durabilidade}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-oliva/10 p-3 sm:p-4 rounded mb-4 sm:mb-6">
+                        <h5 class="text-xs font-bold uppercase tracking-widest text-oliva mb-1">Dicas de Manutenção</h5>
+                        <p class="text-sm text-gray-700">${data.manutencao}</p>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-1 sm:gap-2 mb-4 sm:mb-6">
+                        ${data.tags.map(tag => `
+                            <span class="px-2 sm:px-3 py-1 bg-gray-100 text-gray-800 text-xs font-semibold rounded">${tag}</span>
+                        `).join('')}
+                    </div>
+                    
+                    <button onclick="openWhatsAppOrcamento('Acabamento: ${data.title}')" 
+                            class="w-full bg-oliva text-white px-4 sm:px-6 py-2 sm:py-3 rounded hover:bg-musgo transition-colors uppercase text-xs sm:text-sm tracking-wider font-semibold">
+                        <i class="fab fa-whatsapp mr-2"></i>Solicitar Orçamento
+                    </button>
+                </div>
+            </div>
+        `;
+
+        // Mostrar modal com animação
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        modal.querySelector('div').classList.remove('scale-95');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Fechar modal de detalhes
+    function closeAcabamentoDetail() {
+        const modal = document.getElementById('acabamento-modal');
+        modal.classList.add('opacity-0', 'pointer-events-none');
+        modal.querySelector('div').classList.add('scale-95');
+        document.body.style.overflow = '';
+    }
+
+    // Portfolio modal functions
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    const modal = document.getElementById('project-modal');
+    const modalImage = document.getElementById('modal-image');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDescription = document.getElementById('modal-description');
+    const colorOptions = document.getElementById('color-options');
+    let currentProjectImages = {};
+
+    function openModal(item) {
+        const title = item.dataset.title;
+        const description = item.dataset.description;
+        const images = JSON.parse(item.dataset.images);
+        
+        modalTitle.textContent = title;
+        modalDescription.textContent = description;
+        modalImage.src = images.original;
+        currentProjectImages = images;
+
+        colorOptions.innerHTML = '';
+        for (const colorKey in images) {
+            if (images.hasOwnProperty(colorKey)) {
+                const button = document.createElement('button');
+                button.classList.add('w-8', 'h-8', 'sm:w-10', 'sm:h-10', 'rounded-full', 'border-2', 'border-gray-300', 'hover:border-oliva', 'transition');
+                button.dataset.color = colorKey;
+                button.style.backgroundColor = getColorHex(colorKey);
+                button.onclick = () => changeImageColor(colorKey);
+                colorOptions.appendChild(button);
+            }
+        }
+
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        modal.querySelector('div').classList.remove('scale-95');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.classList.add('opacity-0', 'pointer-events-none');
+        modal.querySelector('div').classList.add('scale-95');
+        document.body.style.overflow = '';
+    }
+
+    function changeImageColor(colorKey) {
+        if (currentProjectImages[colorKey]) {
+            modalImage.src = currentProjectImages[colorKey];
+        }
+        document.querySelectorAll('#color-options button').forEach(btn => {
+            if (btn.dataset.color === colorKey) {
+                btn.classList.add('ring-2', 'ring-oliva');
+            } else {
+                btn.classList.remove('ring-2', 'ring-oliva');
+            }
+        });
+    }
+
+    function getColorHex(colorKey) {
+        switch(colorKey) {
+            case 'original': return '#9ca3af';
+            case 'claro': return '#e5e7eb';
+            case 'escuro': return '#1f2937';
+            default: return '#cccccc';
+        }
+    }
+
+    // Função para abrir WhatsApp com mensagem de orçamento
+    function openWhatsAppOrcamento(contexto = '') {
+        // Número de WhatsApp - SUBSTITUA PELO NÚMERO REAL
+        const whatsappNumber = '5511999999999'; // Formato: 5511999999999 (código país + DDD + número)
+        
+        // Mensagem base
+        let mensagem = `Olá! Gostaria de solicitar um orçamento da NF Móveis Planejados.`;
+        
+        if (contexto) {
+            mensagem += `\n\n*Contexto:* ${contexto}`;
+        }
+        
+        mensagem += `\n\nPor favor, entre em contato comigo para discutirmos os detalhes.`;
+        
+        // Codificar a mensagem para URL
+        const mensagemCodificada = encodeURIComponent(mensagem);
+        
+        // Criar URL do WhatsApp
+        const whatsappURL = `https://wa.me/${whatsappNumber}?text=${mensagemCodificada}`;
+        
+        // Abrir em nova aba
+        window.open(whatsappURL, '_blank');
+        
+        return false;
+    }
+
+    // Função para enviar solicitação de medição
+    function enviarSolicitacaoMedicao(event) {
+        event.preventDefault();
+        
+        const nome = document.getElementById('nome-medicao').value;
+        const telefone = document.getElementById('telefone-medicao').value;
+        const email = document.getElementById('email-medicao').value;
+        const descricao = document.getElementById('descricao-medicao').value;
+        
+        // Número de WhatsApp - SUBSTITUA PELO NÚMERO REAL
+        const whatsappNumber = '5511999999999';
+        
+        let mensagemWhatsApp = `*SOLICITAÇÃO DE MEDIÇÃO - NF MÓVEIS PLANEJADOS*\n\n`;
+        mensagemWhatsApp += `*Nome:* ${nome}\n`;
+        mensagemWhatsApp += `*Telefone/WhatsApp:* ${telefone}\n`;
+        mensagemWhatsApp += `*E-mail:* ${email}\n`;
+        
+        if (descricao) {
+            mensagemWhatsApp += `\n*Descrição do Projeto:*\n${descricao}\n`;
+        }
+        
+        mensagemWhatsApp += `\nGostaria de agendar uma visita técnica para medição e orçamento.`;
+        
+        const mensagemCodificada = encodeURIComponent(mensagemWhatsApp);
+        const whatsappURL = `https://wa.me/${whatsappNumber}?text=${mensagemCodificada}`;
+        
+        window.open(whatsappURL, '_blank');
+        
+        alert('Obrigado! Você será redirecionado para o WhatsApp para agendar sua medição.');
+        
+        document.getElementById('medicaoForm').reset();
+        
+        return false;
+    }
+
+    // Função para toggle do menu mobile
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('mobile-menu-hidden');
+        
+        // Alternar ícone
+        const icon = this.querySelector('i');
+        if (icon.classList.contains('fa-bars')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
+
+    // Event Listeners
+    portfolioItems.forEach(item => {
+        item.addEventListener('click', () => openModal(item));
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Fechar modal ao clicar fora
+    document.getElementById('acabamento-modal').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('acabamento-modal')) {
+            closeAcabamentoDetail();
+        }
+    });
+
+    // Fechar modal com ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeModal();
+            closeAcabamentoDetail();
+            closeCatalogoModal();
+        }
+    });
+
+    // Fechar menu mobile ao clicar em um link
+    document.querySelectorAll('#mobile-menu a, #mobile-menu button').forEach(link => {
+        link.addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.add('mobile-menu-hidden');
+            document.getElementById('mobile-menu-button').querySelector('i').classList.remove('fa-times');
+            document.getElementById('mobile-menu-button').querySelector('i').classList.add('fa-bars');
+        });
+    });
+
+    // Fechar menu mobile ao redimensionar para desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth >= 768) {
+            document.getElementById('mobile-menu').classList.add('mobile-menu-hidden');
+            document.getElementById('mobile-menu-button').querySelector('i').classList.remove('fa-times');
+            document.getElementById('mobile-menu-button').querySelector('i').classList.add('fa-bars');
+        }
+    });
+
+    // Fechar menu mobile ao clicar fora
+    document.addEventListener('click', function(event) {
+        const menu = document.getElementById('mobile-menu');
+        const button = document.getElementById('mobile-menu-button');
+        
+        if (!menu.classList.contains('mobile-menu-hidden') && 
+            !menu.contains(event.target) && 
+            !button.contains(event.target)) {
+            menu.classList.add('mobile-menu-hidden');
+            button.querySelector('i').classList.remove('fa-times');
+            button.querySelector('i').classList.add('fa-bars');
+        }
+    });
+
+    // Inicializar
+    document.addEventListener('DOMContentLoaded', () => {
+        generateAcabamentosCards();
+        
+        // Formatar telefone
+        const telefoneInput = document.getElementById('telefone-medicao');
+        if (telefoneInput) {
+            telefoneInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 10) {
+                    value = value.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+                } else if (value.length > 6) {
+                    value = value.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+                } else if (value.length > 2) {
+                    value = value.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+                } else if (value.length > 0) {
+                    value = value.replace(/^(\d*)/, '($1');
+                }
+                e.target.value = value;
+            });
+        }
+        
+        // Inicializar catálogo de cores se já aberto
+        if (document.getElementById('cores-container').children.length === 0) {
+            generateCoresCards();
+        }
+    });
+</script>
+</body>
+</html>
