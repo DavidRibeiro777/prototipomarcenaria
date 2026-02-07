@@ -300,11 +300,12 @@
                         Quero Meu Orçamento
                     </button>
                     
-                    <button onclick="downloadCatalogoPDF()" 
-                            class="bg-white/10 backdrop-blur-sm hover:bg-white/20 border border-white/30 hover:border-oliva text-white hover:text-oliva px-6 sm:px-8 py-3 sm:py-4 rounded-sm transition-all duration-300 uppercase text-xs sm:text-sm tracking-widest font-semibold flex items-center justify-center gap-2 min-w-[220px] shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                        <i class="fas fa-palette text-lg"></i>
-                        Ver Tabela de Cores
-                    </button>
+                 <a href="https://www.fibraplac.com.br/userfiles/paginas/portfolio-fibraplac.pdf" 
+   target="_blank"
+   class="bg-white/10 backdrop-blur-sm hover:bg-white/20 border border-white/30 hover:border-oliva text-white hover:text-oliva px-6 sm:px-8 py-3 sm:py-4 rounded-sm transition-all duration-300 uppercase text-xs sm:text-sm tracking-widest font-semibold flex items-center justify-center gap-2 min-w-[220px] shadow-lg hover:shadow-xl transform hover:-translate-y-1 cursor-pointer">
+    <i class="fas fa-palette text-lg"></i>
+    Ver Tabela de Cores
+</a>
                 </div>
 
                 <!-- Selos de confiança com cores vibrantes -->
@@ -797,99 +798,93 @@
         </div>
 
         <!-- Destaque: Investimento Recuperável -->
-        <div class="bg-white rounded-2xl p-8 sm:p-10 shadow-lg border border-oliva/10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <!-- Ícone e porcentagem -->
-                <div class="lg:col-span-3 text-center lg:text-left">
-                    <div class="inline-flex flex-col items-center lg:items-start">
-                        <div class="relative w-32 h-32 mb-4">
-                            <!-- Círculo de porcentagem -->
-                            <div class="absolute inset-0 rounded-full border-8 border-oliva/10"></div>
-                            <div class="absolute inset-4 rounded-full border-8 border-oliva/30"></div>
-                            <div class="absolute inset-8 rounded-full border-8 border-oliva"></div>
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <div class="text-center">
-                                    <div class="text-4xl font-bold text-petroleo">100%</div>
-                                    <div class="text-sm text-gray-600 mt-1">Recuperável</div>
-                                </div>
-                            </div>
-                        </div>
-                        <h5 class="text-xl font-serif text-petroleo">Investimento<br>Recuperável</h5>
-                    </div>
+<div class="bg-white rounded-2xl p-8 sm:p-10 shadow-lg border border-oliva/10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <!-- Logo maior em vez do círculo de porcentagem -->
+        <div class="lg:col-span-3 text-center lg:text-left">
+            <div class="inline-flex flex-col items-center lg:items-start">
+                <div class="relative w-60 h-60 mb-4 flex items-center justify-center">
+                    <!-- Logo da empresa - Tamanho maior -->
+                    <img src="img/logo com fundo transparente.png" 
+                         alt="Logo da Empresa" 
+                         class="w-full h-full object-contain max-w-[250px] max-h-[250px]"
+                         onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center\'><div class=\'text-center\'><div class=\'text-4xl font-bold text-petroleo\'>100%</div><div class=\'text-sm text-gray-600 mt-1\'>Recuperável</div></div></div>'">
                 </div>
-
-                <!-- Texto explicativo -->
-                <div class="lg:col-span-7">
-                    <p class="text-gray-700 text-lg sm:text-xl leading-relaxed mb-4">
-                        O valor do projeto técnico profissional é 
-                        <span class="font-bold text-oliva">100% abatido</span> no fechamento do contrato de produção.
-                    </p>
-                    <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
-                        Isso significa que você tem um projeto técnico completo, com visualização em 3D e todos os detalhes, 
-                        <span class="font-semibold text-petroleo">sem custo adicional</span>. 
-                        O investimento já está incluído no orçamento final.
-                    </p>
-                </div>
-
-                <!-- Chamada para ação -->
-                <div class="lg:col-span-2">
-                    <button onclick="openWhatsAppOrcamento('Quero saber mais sobre o projeto técnico com investimento recuperável')" 
-                            class="w-full bg-gradient-to-r from-oliva to-musgo hover:from-musgo hover:to-petroleo text-white px-6 py-4 rounded-lg transition-all duration-300 font-semibold uppercase text-sm tracking-wider shadow-md hover:shadow-lg transform hover:-translate-y-1">
-                        <i class="fas fa-file-contract mr-2"></i>
-                        Iniciar Projeto
-                    </button>
-                    <p class="text-xs text-gray-500 text-center mt-2">
-                        Sem compromisso inicial
-                    </p>
-                </div>
-            </div>
-
-            <!-- Benefícios em Grid -->
-            <div class="mt-8 pt-8 border-t border-gray-100">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="flex items-start">
-                        <div class="w-10 h-10 bg-oliva/10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                            <i class="fas fa-eye text-oliva"></i>
-                        </div>
-                        <div>
-                            <h6 class="font-semibold text-petroleo mb-1">Visualização 3D</h6>
-                            <p class="text-gray-600 text-sm">Veja seu móvel antes da fabricação</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <div class="w-10 h-10 bg-oliva/10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                            <i class="fas fa-ruler-combined text-oliva"></i>
-                        </div>
-                        <div>
-                            <h6 class="font-semibold text-petroleo mb-1">Medições Precisas</h6>
-                            <p class="text-gray-600 text-sm">Projeto técnico detalhado</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <div class="w-10 h-10 bg-oliva/10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                            <i class="fas fa-handshake text-oliva"></i>
-                        </div>
-                        <div>
-                            <h6 class="font-semibold text-petroleo mb-1">Sem Surpresas</h6>
-                            <p class="text-gray-600 text-sm">Orçamento final fechado</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <div class="w-10 h-10 bg-oliva/10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                            <i class="fas fa-lock text-oliva"></i>
-                        </div>
-                        <div>
-                            <h6 class="font-semibold text-petroleo mb-1">Segurança Total</h6>
-                            <p class="text-gray-600 text-sm">Contrato com cláusulas claras</p>
-                        </div>
-                    </div>
-                </div>
+                <h5 class="text-xl font-serif text-petroleo text-center lg:text-left mt-2">Investimento<br>Recuperável</h5>
             </div>
         </div>
 
+        <!-- Texto explicativo -->
+        <div class="lg:col-span-7">
+            <p class="text-gray-700 text-lg sm:text-xl leading-relaxed mb-4">
+                O valor do projeto técnico profissional é 
+                <span class="font-bold text-oliva">100% abatido</span> no fechamento do contrato de produção.
+            </p>
+            <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
+                Isso significa que você tem um projeto técnico completo, com visualização em 3D e todos os detalhes, 
+                <span class="font-semibold text-petroleo">sem custo adicional</span>. 
+                O investimento já está incluído no orçamento final.
+            </p>
+        </div>
+
+        <!-- Chamada para ação -->
+        <div class="lg:col-span-2">
+            <button onclick="openWhatsAppOrcamento('Quero saber mais sobre o projeto técnico com investimento recuperável')" 
+                    class="w-full bg-gradient-to-r from-oliva to-musgo hover:from-musgo hover:to-petroleo text-white px-6 py-4 rounded-lg transition-all duration-300 font-semibold uppercase text-sm tracking-wider shadow-md hover:shadow-lg transform hover:-translate-y-1">
+                <i class="fas fa-file-contract mr-2"></i>
+                Iniciar Projeto
+            </button>
+            <p class="text-xs text-gray-500 text-center mt-2">
+                Sem compromisso inicial
+            </p>
+        </div>
+    </div>
+
+    <!-- Benefícios em Grid -->
+    <div class="mt-8 pt-8 border-t border-gray-100">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="flex items-start">
+                <div class="w-10 h-10 bg-oliva/10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                    <i class="fas fa-eye text-oliva"></i>
+                </div>
+                <div>
+                    <h6 class="font-semibold text-petroleo mb-1">Visualização 3D</h6>
+                    <p class="text-gray-600 text-sm">Veja seu móvel antes da fabricação</p>
+                </div>
+            </div>
+            
+            <div class="flex items-start">
+                <div class="w-10 h-10 bg-oliva/10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                    <i class="fas fa-ruler-combined text-oliva"></i>
+                </div>
+                <div>
+                    <h6 class="font-semibold text-petroleo mb-1">Medições Precisas</h6>
+                    <p class="text-gray-600 text-sm">Projeto técnico detalhado</p>
+                </div>
+            </div>
+            
+            <div class="flex items-start">
+                <div class="w-10 h-10 bg-oliva/10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                    <i class="fas fa-handshake text-oliva"></i>
+                </div>
+                <div>
+                    <h6 class="font-semibold text-petroleo mb-1">Sem Surpresas</h6>
+                    <p class="text-gray-600 text-sm">Orçamento final fechado</p>
+                </div>
+            </div>
+            
+            <div class="flex items-start">
+                <div class="w-10 h-10 bg-oliva/10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                    <i class="fas fa-lock text-oliva"></i>
+                </div>
+                <div>
+                    <h6 class="font-semibold text-petroleo mb-1">Segurança Total</h6>
+                    <p class="text-gray-600 text-sm">Contrato com cláusulas claras</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     
     </div>
 </section>
@@ -912,9 +907,9 @@
          data-title="Cozinha Gourmet"
          data-description="Este projeto de Cozinha Gourmet Planejada destaca-se pelo equilíbrio refinado entre elementos clássicos e contemporâneos. Com marcenaria de alto padrão, o design foi concebido para criar um ambiente atemporal e abundantemente iluminado.."
          data-images='{
-           "original": "img/cinza medio cozinha.jpeg", 
-        "claro": "img/cinza gelo cozinha.jpeg", 
-        "escuro": "img/azul petroleo cozinha.jpeg",
+           "original": "img/cinzamediocozinha.jpeg", 
+        "claro": "img/cinzagelocozinha.jpeg", 
+        "escuro": "img/cozinhaazulpetroleo.jpeg",
         "verde": "img/verdecozinha.jpeg",
         "madeira": "img/madeira.jpeg",
         "branco": "img/brancocozinha.jpeg"
@@ -923,7 +918,7 @@
             <h4 class="text-lg sm:text-xl md:text-2xl font-serif mb-1 sm:mb-2 text-center">Cozinha Gourmet Oliva</h4>
             <p class="text-xs sm:text-sm font-light text-center">Clique para simular cores</p>
         </div>
-        <img src="img/cinza medio cozinha.jpeg" 
+        <img src="img/cinzamediocozinha.jpeg" 
              alt="Cozinha Gourmetem cinza médio"
              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
              loading="lazy">
@@ -934,9 +929,9 @@
          data-title="Dormitório Suíte"
          data-description="Este projeto de Dormitório Planejado foca no máximo conforto e sofisticação visual. A marcenaria utiliza variações de tonalidades neutras e texturas suaves para compor uma atmosfera de relaxamento total."
          data-images='{
-           "original": "img/cinza medio cozinha.jpeg", 
-        "claro": "img/cinza gelo cozinha.jpeg", 
-        "escuro": "img/azul petroleo cozinha.jpeg",
+           "original": "img/QUARTOCinza MédiA-Grafite Claro.jpeg", 
+        "claro": "img/Cinza Gelo-Off-White.jpeg", 
+        "escuro": "img/Azul Petróleo Escuro-Marinho.jpeg",
         "verde": "img/verde quarto.jpeg",
         "madeira": "img/madeiraquarto.jpeg",
         "branco": "img/brancoquarto.jpeg"
@@ -957,9 +952,9 @@
          data-title="Home Office Moderno"
          data-description="Este projeto de Home Office Planejado une funcionalidade corporativa ao conforto residencial. Desenvolvido com foco em ergonomia e aproveitamento de espaço, o móvel apresenta um acabamento premium, proporcionando uma estética clean e profissional que amplia visualmente o ambiente.."
          data-images='{
-           "original": "img/cinza medio cozinha.jpeg", 
-        "claro": "img/cinza gelo cozinha.jpeg", 
-        "escuro": "img/azul petroleo cozinha.jpeg",
+           "original": "img/cinza escuro.jpeg", 
+        "claro": "img/CINZA CLARO.jpeg", 
+        "escuro": "img/azulmarinho.jpeg",
         "verde": "img/verdeomeoffice.jpeg",
         "madeira": "img/madeirahomeoffice.jpeg",
         "branco": "img/brancohomeoffice.jpeg"
@@ -1114,7 +1109,7 @@
                 O Que Nossos <span class="text-oliva">Clientes Dizem</span>
             </h3>
             <p class="text-gray-600 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed">
-                Satisfação garantida. Veja o que clientes em todo Brasil dizem sobre nossos projetos.
+                Satisfação garantida. Veja o que os clientes  de Goiânia e região dizem.
             </p>
         </div>
 
@@ -1130,7 +1125,7 @@
                         <h4 class="font-serif text-lg text-petroleo">Marina Silva</h4>
                         <div class="flex items-center text-sm text-gray-500 mt-1">
                             <i class="fas fa-map-marker-alt mr-2 text-oliva"></i>
-                            <span>São Paulo - SP</span>
+                            <span>Goiânia</span>
                         </div>
                     </div>
                 </div>
@@ -1163,7 +1158,7 @@
                         <h4 class="font-serif text-lg text-petroleo">Carlos Mendes</h4>
                         <div class="flex items-center text-sm text-gray-500 mt-1">
                             <i class="fas fa-map-marker-alt mr-2 text-oliva"></i>
-                            <span>Rio de Janeiro - RJ</span>
+                            <span>Inhumas</span>
                         </div>
                     </div>
                 </div>
@@ -1196,7 +1191,7 @@
                         <h4 class="font-serif text-lg text-petroleo">Beatriz Costa</h4>
                         <div class="flex items-center text-sm text-gray-500 mt-1">
                             <i class="fas fa-map-marker-alt mr-2 text-oliva"></i>
-                            <span>Belorizonte - MG</span>
+                            <span>Anápolis</span>
                         </div>
                     </div>
                 </div>
@@ -1229,7 +1224,7 @@
                         <h4 class="font-serif text-lg text-petroleo">Roberto Alves</h4>
                         <div class="flex items-center text-sm text-gray-500 mt-1">
                             <i class="fas fa-map-marker-alt mr-2 text-oliva"></i>
-                            <span>Curitiba - PR</span>
+                            <span>Itaberaí</span>
                         </div>
                     </div>
                 </div>
@@ -1262,7 +1257,7 @@
                         <h4 class="font-serif text-lg text-petroleo">Fernanda Oliveira</h4>
                         <div class="flex items-center text-sm text-gray-500 mt-1">
                             <i class="fas fa-map-marker-alt mr-2 text-oliva"></i>
-                            <span>Porto Alegre - RS</span>
+                            <span>Jaraguá</span>
                         </div>
                     </div>
                 </div>
@@ -1295,7 +1290,7 @@
                         <h4 class="font-serif text-lg text-petroleo">Antonio Pereira</h4>
                         <div class="flex items-center text-sm text-gray-500 mt-1">
                             <i class="fas fa-map-marker-alt mr-2 text-oliva"></i>
-                            <span>Brasília - DF</span>
+                            <span>Taquaral</span>
                         </div>
                     </div>
                 </div>
@@ -1334,7 +1329,7 @@
                         <h4 class="font-serif text-lg text-petroleo">Marina Silva</h4>
                         <div class="flex items-center text-sm text-gray-500 mt-1">
                             <i class="fas fa-map-marker-alt mr-2 text-oliva"></i>
-                            <span>São Paulo - SP</span>
+                            <span>Goiânia</span>
                         </div>
                     </div>
                 </div>
@@ -1369,7 +1364,7 @@
                         <h4 class="font-serif text-lg text-petroleo">Carlos Mendes</h4>
                         <div class="flex items-center text-sm text-gray-500 mt-1">
                             <i class="fas fa-map-marker-alt mr-2 text-oliva"></i>
-                            <span>Rio de Janeiro - RJ</span>
+                            <span>Inhumas</span>
                         </div>
                     </div>
                 </div>
@@ -1404,7 +1399,7 @@
                         <h4 class="font-serif text-lg text-petroleo">Beatriz Costa</h4>
                         <div class="flex items-center text-sm text-gray-500 mt-1">
                             <i class="fas fa-map-marker-alt mr-2 text-oliva"></i>
-                            <span>Belorizonte - MG</span>
+                            <span>Anápolis</span>
                         </div>
                     </div>
                 </div>
@@ -1439,7 +1434,7 @@
                         <h4 class="font-serif text-lg text-petroleo">Roberto Alves</h4>
                         <div class="flex items-center text-sm text-gray-500 mt-1">
                             <i class="fas fa-map-marker-alt mr-2 text-oliva"></i>
-                            <span>Curitiba - PR</span>
+                            <span>Itaberaí</span>
                         </div>
                     </div>
                 </div>
@@ -1474,7 +1469,7 @@
                         <h4 class="font-serif text-lg text-petroleo">Fernanda Oliveira</h4>
                         <div class="flex items-center text-sm text-gray-500 mt-1">
                             <i class="fas fa-map-marker-alt mr-2 text-oliva"></i>
-                            <span>Porto Alegre - RS</span>
+                            <span>Jaraguá</span>
                         </div>
                     </div>
                 </div>
@@ -1509,7 +1504,7 @@
                         <h4 class="font-serif text-lg text-petroleo">Antonio Pereira</h4>
                         <div class="flex items-center text-sm text-gray-500 mt-1">
                             <i class="fas fa-map-marker-alt mr-2 text-oliva"></i>
-                            <span>Brasília - DF</span>
+                            <span>Taquaral</span>
                         </div>
                     </div>
                 </div>
@@ -2498,7 +2493,7 @@ function showNotification(message, type = 'success') {
         },
         'metalizado': {
             title: 'Acabamento Metalizado',
-            image: 'img/metalizado.png',
+            image: 'img/mettalizado.jpeg ',
             description: 'Toque industrial e contemporâneo. Pigmentos metálicos que reagem à iluminação, criando um efeito dinâmico. Resistente a intempéries.',
             caracteristicas: [
                 'Efeito visual dinâmico',
