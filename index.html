@@ -364,13 +364,12 @@
         }
     }
 </style>
-    <!-- Hero Section com responsividade aprimorada -->
 <section id="home" class="relative min-h-screen flex items-center justify-center bg-petroleo pt-20 pb-10 sm:pb-16">
-    <!-- Overlay mais escuro para melhor contraste -->
-    <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/50 z-10"></div>
+    <!-- Overlay reduzido para melhor nitidez -->
+    <div class="absolute inset-0 bg-gradient-to-r from-black/40 via-black/30 to-black/20 z-10"></div>
     
-    <!-- Gradiente adicional para escurecer a área do texto -->
-    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30 z-10"></div>
+    <!-- Gradiente ajustado para menos opacidade -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/15 z-10"></div>
     
     <!-- Vídeo de fundo -->
     <div class="absolute inset-0 overflow-hidden z-0">
@@ -379,114 +378,113 @@
             loop 
             muted 
             playsinline
-            class="w-full h-full object-cover"
-            poster="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?q=80&w=2070" <!-- Imagem de fallback -->
+            class="w-full h-full object-cover brightness-110 contrast-110"
+            poster="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?q=80&w=2070"
         >
-        
             <!-- Fallback para imagens se o vídeo não carregar -->
             <img src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?q=80&w=2070" 
                  alt="Móveis Planejados" 
-                 class="w-full h-full object-cover">
+                 class="w-full h-full object-cover brightness-110 contrast-110">
         </video>
-       
-       
     </div>
     
+    <!-- Container do conteúdo com melhor contraste -->
     <div class="relative z-20 w-full py-8 sm:py-12">
         <div class="container mx-auto px-4 sm:px-6">
-            <!-- Conteúdo principal -->
-            <div class="text-center text-white max-w-4xl mx-auto">
-                <!-- Badge com fundo mais contrastante -->
-                <span class="inline-block bg-white/10 backdrop-blur-md text-oliva font-semibold text-xs sm:text-sm uppercase tracking-[0.3em] px-4 py-2 rounded-full mb-6 sm:mb-8 border border-oliva/30 shadow-lg">
+            <!-- Conteúdo principal com melhor legibilidade -->
+            <div class="text-center text-white max-w-4xl mx-auto bg-black/20 backdrop-blur-sm rounded-2xl p-6 sm:p-8 md:p-10 border border-white/10 shadow-2xl">
+                <!-- Badge com mais contraste -->
+                <span class="inline-block bg-white/15 backdrop-blur-md text-oliva font-semibold text-xs sm:text-sm uppercase tracking-[0.3em] px-4 py-2 rounded-full mb-6 sm:mb-8 border border-oliva/40 shadow-lg">
                     <i class="fas fa-file-contract mr-2"></i>Prazo Garantido em Contrato
                 </span>
 
                 <!-- Título -->
                 <div class="mb-6 sm:mb-8">
-                    <h1 class="text-3xl xs:text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl font-serif leading-tight">
-                        <span class="text-white drop-shadow-lg">Móveis Planejados</span><br>
-                        <span class="text-oliva drop-shadow-lg font-bold">com Prazo Garantido</span>
+                    <h1 class="text-3xl xs:text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl font-serif leading-tight [text-shadow:_0_2px_8px_rgb(0_0_0_/_0.8)]">
+                        <span class="text-white">Móveis Planejados</span><br>
+                        <span class="text-oliva font-bold">com Prazo Garantido</span>
                     </h1>
                 </div>
 
                 <!-- Subtítulo -->
                 <div class="mb-8 sm:mb-10 max-w-2xl mx-auto">
-                    <p class="text-base sm:text-lg md:text-xl font-normal mb-4 leading-relaxed text-white drop-shadow-lg">
-                        <span class="font-medium">Projeto técnico profissional, </span>
-                        <span class="text-oliva font-semibold">acabamento premium</span>
-                        <span class="font-medium"> e preço fixo.</span>
+                    <p class="text-base sm:text-lg md:text-xl font-normal mb-4 leading-relaxed text-white [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.7)]">
+                        <span class="font-semibold">Projeto técnico profissional, </span>
+                        <span class="text-oliva font-bold">acabamento premium</span>
+                        <span class="font-semibold"> e preço fixo.</span>
                     </p>
-                    <p class="text-base sm:text-lg md:text-xl font-normal leading-relaxed text-white drop-shadow-lg">
-                        <span class="font-medium">Sem surpresas, sem atrasos.</span>
-                        <span class="block mt-2 text-dourado font-bold text-lg sm:text-xl">Seu móvel perfeito, entregue no prazo.</span>
+                    <p class="text-base sm:text-lg md:text-xl font-normal leading-relaxed text-white [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.7)]">
+                        <span class="font-semibold">Sem surpresas, sem atrasos.</span>
+                        <span class="block mt-3 text-dourado font-bold text-xl sm:text-2xl [text-shadow:_0_2px_6px_rgb(0_0_0_/_0.8)]">
+                            Seu móvel perfeito, entregue no prazo.
+                        </span>
                     </p>
                 </div>
 
                 <!-- Botões -->
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10 sm:mb-14">
                     <button onclick="openWhatsAppOrcamento('Solicitação de orçamento - Hero Section')" 
-                            class="bg-oliva hover:bg-musgo text-white px-6 sm:px-8 py-3 sm:py-4 rounded-sm transition-all duration-300 uppercase text-xs sm:text-sm tracking-widest font-semibold flex items-center justify-center gap-2 min-w-[220px] shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                            class="bg-oliva hover:bg-musgo text-white px-6 sm:px-8 py-3 sm:py-4 rounded-sm transition-all duration-300 uppercase text-xs sm:text-sm tracking-widest font-semibold flex items-center justify-center gap-2 min-w-[220px] shadow-lg hover:shadow-xl transform hover:-translate-y-1 border-2 border-oliva/50 hover:border-oliva">
                         <i class="fas fa-calculator text-lg"></i>
                         Quero Meu Orçamento
                     </button>
                     
                     <a href="https://www.fibraplac.com.br/userfiles/paginas/portfolio-fibraplac.pdf" 
                        target="_blank"
-                       class="bg-white/10 backdrop-blur-sm hover:bg-white/20 border border-white/30 hover:border-oliva text-white hover:text-oliva px-6 sm:px-8 py-3 sm:py-4 rounded-sm transition-all duration-300 uppercase text-xs sm:text-sm tracking-widest font-semibold flex items-center justify-center gap-2 min-w-[220px] shadow-lg hover:shadow-xl transform hover:-translate-y-1 cursor-pointer">
+                       class="bg-white/15 backdrop-blur-sm hover:bg-white/25 border-2 border-white/30 hover:border-oliva text-white hover:text-oliva px-6 sm:px-8 py-3 sm:py-4 rounded-sm transition-all duration-300 uppercase text-xs sm:text-sm tracking-widest font-semibold flex items-center justify-center gap-2 min-w-[220px] shadow-lg hover:shadow-xl transform hover:-translate-y-1 cursor-pointer">
                         <i class="fas fa-palette text-lg"></i>
                         Ver Tabela de Cores
                     </a>
                 </div>
 
-                <!-- Selos de confiança com cores vibrantes -->
+                <!-- Selos de confiança com melhor visibilidade -->
                 <div class="mb-10 sm:mb-12">
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 max-w-3xl mx-auto">
                         <!-- Selo 1 -->
-                        <div class="text-center group bg-gradient-to-br from-oliva/20 to-transparent backdrop-blur-md rounded-xl p-5 sm:p-6 border border-oliva/40 hover:border-oliva transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-oliva/20">
-                            <div class="text-3xl sm:text-4xl md:text-4xl font-black text-oliva mb-3 group-hover:scale-110 transition-transform [text-shadow:_0_0_15px_rgba(112,130,56,0.4)] animate-pulse">
+                        <div class="text-center group bg-gradient-to-br from-black/30 to-black/20 backdrop-blur-md rounded-xl p-5 sm:p-6 border-2 border-oliva/50 hover:border-oliva transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-oliva/25">
+                            <div class="text-3xl sm:text-4xl md:text-4xl font-black text-oliva mb-3 group-hover:scale-110 transition-transform [text-shadow:_0_0_20px_rgba(112,130,56,0.6)]">
                                 500+
                             </div>
-                            <div class="text-sm sm:text-base text-white font-bold uppercase tracking-wider [text-shadow:_0_2px_4px_rgb(0_0_0_/_50%)]">
+                            <div class="text-sm sm:text-base text-white font-bold uppercase tracking-wider [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.8)]">
                                 Projetos<br>Realizados
                             </div>
-                            <div class="mt-4 h-1.5 w-20 mx-auto bg-gradient-to-r from-transparent via-oliva to-transparent rounded-full group-hover:w-24 group-hover:via-white transition-all duration-300 shadow-[0_0_10px_rgba(112,130,56,0.5)]"></div>
+                            <div class="mt-4 h-1.5 w-20 mx-auto bg-gradient-to-r from-transparent via-oliva to-transparent rounded-full group-hover:w-24 group-hover:via-white transition-all duration-300 shadow-[0_0_15px_rgba(112,130,56,0.6)]"></div>
                         </div>
                         
                         <!-- Selo 2 -->
-                        <div class="text-center group bg-gradient-to-br from-oliva/20 to-transparent backdrop-blur-md rounded-xl p-5 sm:p-6 border border-oliva/40 hover:border-oliva transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-oliva/20">
-                            <div class="text-3xl sm:text-4xl md:text-4xl font-black text-oliva mb-3 group-hover:scale-110 transition-transform [text-shadow:_0_0_15px_rgba(112,130,56,0.4)] animate-pulse">
+                        <div class="text-center group bg-gradient-to-br from-black/30 to-black/20 backdrop-blur-md rounded-xl p-5 sm:p-6 border-2 border-oliva/50 hover:border-oliva transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-oliva/25">
+                            <div class="text-3xl sm:text-4xl md:text-4xl font-black text-oliva mb-3 group-hover:scale-110 transition-transform [text-shadow:_0_0_20px_rgba(112,130,56,0.6)]">
                                 98%
                             </div>
-                            <div class="text-sm sm:text-base text-white font-bold uppercase tracking-wider [text-shadow:_0_2px_4px_rgb(0_0_0_/_50%)]">
+                            <div class="text-sm sm:text-base text-white font-bold uppercase tracking-wider [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.8)]">
                                 Entregas<br>No Prazo
                             </div>
-                            <div class="mt-4 h-1.5 w-20 mx-auto bg-gradient-to-r from-transparent via-oliva to-transparent rounded-full group-hover:w-24 group-hover:via-white transition-all duration-300 shadow-[0_0_10px_rgba(112,130,56,0.5)]"></div>
+                            <div class="mt-4 h-1.5 w-20 mx-auto bg-gradient-to-r from-transparent via-oliva to-transparent rounded-full group-hover:w-24 group-hover:via-white transition-all duration-300 shadow-[0_0_15px_rgba(112,130,56,0.6)]"></div>
                         </div>
                         
                         <!-- Selo 3 -->
-                        <div class="text-center group bg-gradient-to-br from-dourado/20 to-transparent backdrop-blur-md rounded-xl p-5 sm:p-6 border border-dourado/40 hover:border-dourado transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-dourado/20">
-                            <div class="text-3xl sm:text-4xl md:text-4xl font-black text-dourado mb-3 group-hover:scale-110 transition-transform [text-shadow:_0_0_15px_rgba(197,160,89,0.4)] animate-pulse">
+                        <div class="text-center group bg-gradient-to-br from-black/30 to-black/20 backdrop-blur-md rounded-xl p-5 sm:p-6 border-2 border-dourado/50 hover:border-dourado transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-dourado/25">
+                            <div class="text-3xl sm:text-4xl md:text-4xl font-black text-dourado mb-3 group-hover:scale-110 transition-transform [text-shadow:_0_0_20px_rgba(197,160,89,0.6)]">
                                 4.9★
                             </div>
-                            <div class="text-sm sm:text-base text-white font-bold uppercase tracking-wider [text-shadow:_0_2px_4px_rgb(0_0_0_/_50%)]">
+                            <div class="text-sm sm:text-base text-white font-bold uppercase tracking-wider [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.8)]">
                                 Avaliação<br>Média
                             </div>
-                            <div class="mt-4 h-1.5 w-20 mx-auto bg-gradient-to-r from-transparent via-dourado to-transparent rounded-full group-hover:w-24 group-hover:via-white transition-all duration-300 shadow-[0_0_10px_rgba(197,160,89,0.5)]"></div>
+                            <div class="mt-4 h-1.5 w-20 mx-auto bg-gradient-to-r from-transparent via-dourado to-transparent rounded-full group-hover:w-24 group-hover:via-white transition-all duration-300 shadow-[0_0_15px_rgba(197,160,89,0.6)]"></div>
                         </div>
                         
                         <!-- Selo 4 -->
-                        <div class="text-center group bg-gradient-to-br from-musgo/20 to-transparent backdrop-blur-md rounded-xl p-5 sm:p-6 border border-musgo/40 hover:border-musgo transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-musgo/20">
-                            <div class="text-3xl sm:text-4xl md:text-4xl font-black text-musgo mb-3 group-hover:scale-110 transition-transform [text-shadow:_0_0_15px_rgba(75,83,32,0.4)] animate-pulse">
+                        <div class="text-center group bg-gradient-to-br from-black/30 to-black/20 backdrop-blur-md rounded-xl p-5 sm:p-6 border-2 border-musgo/50 hover:border-musgo transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-musgo/25">
+                            <div class="text-3xl sm:text-4xl md:text-4xl font-black text-musgo mb-3 group-hover:scale-110 transition-transform [text-shadow:_0_0_20px_rgba(75,83,32,0.6)]">
                                 15+
                             </div>
-                            <div class="text-sm sm:text-base text-white font-bold uppercase tracking-wider [text-shadow:_0_2px_4px_rgb(0_0_0_/_50%)]">
+                            <div class="text-sm sm:text-base text-white font-bold uppercase tracking-wider [text-shadow:_0_2px_4px_rgb(0_0_0_/_0.8)]">
                                 Anos de<br>Experiência
                             </div>
-                            <div class="mt-4 h-1.5 w-20 mx-auto bg-gradient-to-r from-transparent via-musgo to-transparent rounded-full group-hover:w-24 group-hover:via-white transition-all duration-300 shadow-[0_0_10px_rgba(75,83,32,0.5)]"></div>
+                            <div class="mt-4 h-1.5 w-20 mx-auto bg-gradient-to-r from-transparent via-musgo to-transparent rounded-full group-hover:w-24 group-hover:via-white transition-all duration-300 shadow-[0_0_15px_rgba(75,83,32,0.6)]"></div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -3085,6 +3083,7 @@ function getColorHex(colorKey) {
 </script>
 </body>
 </html>
+
 
 
 
