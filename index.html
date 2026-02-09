@@ -280,13 +280,14 @@
 
 <!-- SEÇÃO DO VÍDEO ABAIXO DA NAVBAR E ACIMA DO HOME -->
 <!-- SEÇÃO DO VÍDEO HORIZONTAL ANTES DO HOME -->
+<!-- SEÇÃO DO VÍDEO HORIZONTAL ANTES DO HOME -->
 <section class="relative w-full pt-16 md:pt-20">
     <!-- Container do vídeo -->
-    <div class="relative w-full aspect-video max-h-[70vh] overflow-hidden bg-black">
+    <div class="relative w-full aspect-video max-h-[70vh] overflow-hidden">
         <!-- Vídeo principal -->
         <video
             class="absolute inset-0 w-full h-full object-cover"
-            src="img/Vídeo_web_Imersão_Gerado (1).webm"
+            src="img/Vídeo_web_Imersão_Gerado.webm"
             autoplay
             muted
             loop
@@ -304,31 +305,65 @@
                  class="w-full h-full object-cover">
         </video>
         
-        <!-- Overlay gradiente para contraste do texto -->
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40"></div>
-        
-        <!-- Conteúdo sobreposto -->
-        <div class="absolute inset-0 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-4xl mx-auto">
-                <!-- Logo/Identificação -->
-            
-           
-
-              
-
-                <!-- Scroll indicator -->
-                <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2">
-                    <a href="#home" 
-                       class="inline-flex flex-col items-center text-white/60 hover:text-white transition-colors group">
-                        <span class="text-xs mb-1 opacity-0 group-hover:opacity-100 transition-opacity">Scroll</span>
-                        <i class="fas fa-chevron-down animate-pulse"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+  
 </section>
+
+<!-- Estilos Tailwind para animações -->
+<style>
+    .aspect-video {
+        aspect-ratio: 16 / 9;
+    }
+    
+    .max-h-\[70vh\] {
+        max-height: 70vh;
+    }
+    
+    /* Melhorar brilho do vídeo */
+    video {
+        filter: brightness(1.1) contrast(1.1);
+    }
+    
+    /* Animação de bounce */
+    @keyframes bounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-5px);
+        }
+    }
+    
+    .animate-bounce {
+        animation: bounce 1.5s infinite;
+    }
+    
+    /* Ajuste para telas muito pequenas */
+    @media (max-width: 640px) {
+        .aspect-video {
+            aspect-ratio: 4 / 3;
+        }
+        
+        .max-h-\[70vh\] {
+            max-height: 60vh;
+        }
+        
+        /* Overlays menores em mobile */
+        .absolute.bottom-0 {
+            height: 40%;
+        }
+        
+        .absolute.top-0 {
+            height: 20%;
+        }
+    }
+    
+    /* Ajuste para tablets */
+    @media (min-width: 641px) and (max-width: 1024px) {
+        .max-h-\[70vh\] {
+            max-height: 65vh;
+        }
+    }
+</style>
     <!-- Hero Section com responsividade aprimorada -->
 <section id="home" class="relative min-h-screen flex items-center justify-center bg-petroleo pt-20 pb-10 sm:pb-16">
     <!-- Overlay mais escuro para melhor contraste -->
@@ -347,7 +382,10 @@
             class="w-full h-full object-cover"
             poster="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?q=80&w=2070" <!-- Imagem de fallback -->
         >
-     
+            <!-- Adicione múltiplas fontes para compatibilidade -->
+            <source src="img/Vídeo_web_Imersão_Gerado (1).webm" type="video/mp4">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-wooden-furniture-in-a-modern-living-room-4442-large.webm" type="video/webm">
+            <!-- Fallback para imagens se o vídeo não carregar -->
             <img src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?q=80&w=2070" 
                  alt="Móveis Planejados" 
                  class="w-full h-full object-cover">
@@ -2568,7 +2606,7 @@ function showNotification(message, type = 'success') {
             ],
             ambientes: ['externa', 'Banheiro', 'Sala de Estar'],
             manutencao: 'Limpar com pano macio e produtos específicos para superfícies brilhantes.',
-            durabilidade: 'Alta (8-10 anos)',
+           
             tags: ['Moderno', 'Luxuoso', 'Fácil Limpeza'],
             badge: 'Mais Popular',
             badgeColor: 'oliva'
@@ -2585,7 +2623,7 @@ function showNotification(message, type = 'success') {
             ],
             ambientes: ['Dormitório', 'Escritório', 'Biblioteca'],
             manutencao: 'Limpeza com pano seco ou levemente úmido.',
-            durabilidade: 'Média-Alta (7-9 anos)',
+            
             tags: ['Elegante', 'Discreto', 'Confortável'],
             badge: 'Elegante',
             badgeColor: 'petroleo'
@@ -2602,7 +2640,7 @@ function showNotification(message, type = 'success') {
             ],
             ambientes: ['Cozinha', 'Área Externa', 'Lojas Comerciais'],
             manutencao: 'Limpar com produtos neutros e evitar abrasivos.',
-            durabilidade: 'Alta (9-11 anos)',
+
             tags: ['Industrial', 'Moderno', 'Resistente'],
             badge: 'Tendência',
             badgeColor: 'dourado'
@@ -2619,7 +2657,7 @@ function showNotification(message, type = 'success') {
             ],
             ambientes: ['Sala', 'Dormitório', 'Escritório'],
             manutencao: 'Tratamento específico para madeira a cada 2 anos.',
-            durabilidade: 'Média (6-8 anos)',
+    
             tags: ['Natural', 'Clássico', 'Atemporal'],
             badge: 'Clássico',
             badgeColor: 'musgo'
@@ -2636,7 +2674,7 @@ function showNotification(message, type = 'success') {
             ],
             ambientes: ['Banheiro', 'Cozinha', 'Área Externa'],
             manutencao: 'Limpeza com escova macia e água corrente.',
-            durabilidade: 'Alta (10-12 anos)',
+
             tags: ['Seguro', 'Prático', 'Durável'],
             badge: 'Antiderrapante',
             badgeColor: 'dourado'
@@ -2653,7 +2691,7 @@ function showNotification(message, type = 'success') {
             ],
             ambientes: ['Escritório', 'Sala', 'Dormitório'],
             manutencao: 'Limpeza simples com pano seco.',
-            durabilidade: 'Média (5-7 anos)',
+      
             tags: ['Minimalista', 'Clean', 'Prático'],
             badge: 'Discreto',
             badgeColor: 'musgo'
@@ -2783,10 +2821,6 @@ function showNotification(message, type = 'success') {
                         <div class="bg-gray-50 p-3 sm:p-4 rounded">
                             <h5 class="text-xs font-bold uppercase tracking-widest text-petroleo mb-1">Ambientes Indicados</h5>
                             <p class="text-sm text-gray-700">${data.ambientes.join(', ')}</p>
-                        </div>
-                        <div class="bg-gray-50 p-3 sm:p-4 rounded">
-                            <h5 class="text-xs font-bold uppercase tracking-widest text-petroleo mb-1">Durabilidade</h5>
-                            <p class="text-sm text-gray-700">${data.durabilidade}</p>
                         </div>
                     </div>
                     
@@ -3054,6 +3088,3 @@ function getColorHex(colorKey) {
 </script>
 </body>
 </html>
-
-
-
