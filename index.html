@@ -154,6 +154,58 @@
         .animate-fade-in {
             animation: fadeIn 0.3s ease-out;
         }
+        
+        /* Estilos para o vídeo */
+        .hero-video-section {
+            position: relative;
+            width: 100%;
+            height: 60vh; /* Ajuste a altura conforme necessário */
+            overflow: hidden;
+            margin-top: 0; /* Remove qualquer margem superior */
+        }
+        
+        .hero-video-media {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.8);
+        }
+        
+        .hero-video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5));
+            z-index: 1;
+        }
+        
+        .hero-video-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 2;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-video-section {
+                height: 40vh;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-video-section {
+                height: 30vh;
+            }
+        }
     </style>
 </head>
 <body class="bg-[#fdfdfd] text-gray-900 overflow-x-hidden">
@@ -225,33 +277,58 @@
         </div>
     </div>
 </header>
-            <!-- Menu Desktop -->
-            <div class="hidden md:flex space-x-6 lg:space-x-8 items-center uppercase text-xs tracking-[0.2em] font-semibold">
-                <a href="#home" class="hover:text-oliva transition">Início</a>
-                <a href="#portfolio" class="hover:text-oliva transition">Portfólio</a>
-                <a href="#materiais" class="hover:text-oliva transition">Contato</a>
-                <button onclick="openCatalogoModal()" class="hover:text-oliva transition uppercase text-xs tracking-[0.2em] font-semibold">Catálogo de Cores</button>
-                <a href="#guia-acabamentos" class="bg-petroleo text-white px-4 sm:px-6 py-2 sm:py-3 rounded-sm hover:bg-oliva transition-all text-xs sm:text-sm">Acabamentos</a>
-            </div>
+
+<!-- SEÇÃO DO VÍDEO ABAIXO DA NAVBAR E ACIMA DO HOME -->
+<!-- SEÇÃO DO VÍDEO HORIZONTAL ANTES DO HOME -->
+<section class="relative w-full pt-16 md:pt-20">
+    <!-- Container do vídeo -->
+    <div class="relative w-full aspect-video max-h-[70vh] overflow-hidden bg-black">
+        <!-- Vídeo principal -->
+        <video
+            class="absolute inset-0 w-full h-full object-cover"
+            src="img/Vídeo_web_Imersão_Gerado.webm"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            poster="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?q=80&w=2070"
+        >
+            <!-- Fallbacks para compatibilidade -->
+            <source src="img/Vídeo_web_Imersão_Gerado (1).webm" type="video/mp4">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-wooden-furniture-in-a-modern-living-room-4442-large.webm" type="video/webm">
             
-            <!-- Botão Menu Mobile -->
-            <button id="mobile-menu-button" class="md:hidden text-petroleo text-xl">
-                <i class="fas fa-bars"></i>
-            </button>
-        </nav>
+            <!-- Fallback de imagem se o vídeo não carregar -->
+            <img src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?q=80&w=2070" 
+                 alt="Móveis Planejados NF" 
+                 class="w-full h-full object-cover">
+        </video>
         
-        <!-- Menu Mobile -->
-        <div id="mobile-menu" class="md:hidden bg-white border-t border-gray-100 py-4 px-6 mobile-menu-hidden shadow-lg">
-            <div class="flex flex-col space-y-4">
-                <a href="#home" class="hover:text-oliva transition font-medium py-2 border-b border-gray-100">Início</a>
-                <a href="#portfolio" class="hover:text-oliva transition font-medium py-2 border-b border-gray-100">Portfólio</a>
-                <a href="#materiais" class="hover:text-oliva transition font-medium py-2 border-b border-gray-100">Contato</a>
-                <button onclick="openCatalogoModal()" class="hover:text-oliva transition font-medium py-2 border-b border-gray-100 text-left">Catálogo de Cores</button>
-                <a href="#guia-acabamentos" class="bg-petroleo text-white px-6 py-3 rounded-sm hover:bg-oliva transition-all font-medium text-center mt-2">Ver Acabamentos</a>
+        <!-- Overlay gradiente para contraste do texto -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40"></div>
+        
+        <!-- Conteúdo sobreposto -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-4xl mx-auto">
+                <!-- Logo/Identificação -->
+            
+           
+
+              
+
+                <!-- Scroll indicator -->
+                <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2">
+                    <a href="#home" 
+                       class="inline-flex flex-col items-center text-white/60 hover:text-white transition-colors group">
+                        <span class="text-xs mb-1 opacity-0 group-hover:opacity-100 transition-opacity">Scroll</span>
+                        <i class="fas fa-chevron-down animate-pulse"></i>
+                    </a>
+                </div>
             </div>
         </div>
-    </header>
-
+    </div>
+</section>
     <!-- Hero Section com responsividade aprimorada -->
 <section id="home" class="relative min-h-screen flex items-center justify-center bg-petroleo pt-20 pb-10 sm:pb-16">
     <!-- Overlay mais escuro para melhor contraste -->
