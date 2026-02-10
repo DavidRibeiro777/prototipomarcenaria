@@ -929,82 +929,227 @@
             </div>
         </div>
 
-        <!-- Destaque: Investimento Recuperável -->
-        <!-- SEÇÃO DO VÍDEO COM BORDAS REMOVIDAS -->
-        <section class="relative w-full mt-12 md:mt-16 rounded-xl overflow-hidden shadow-2xl">
-            <!-- Container do vídeo com ajuste para remover bordas -->
-            <div class="relative w-full h-[50vh] min-h-[400px] md:h-[60vh] md:min-h-[500px] overflow-hidden bg-black">
-                <!-- Vídeo principal -->
-                <video
-                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full object-cover"
-                    src="img/MDF_Corte_Planejado_Vídeo_Pronto.mp4"
-                    autoplay
-                    muted
-                    loop
-                    playsinline
-                    preload="auto"
-                    style="width: 100.5%; height: 100.5%;" <!-- Leve aumento para cobrir bordas -->
-                >
-                    <source src="img/MDF_Corte_Planejado_Vídeo_Pronto.mp4" type="video/mp4">
-                </video>
-                
-                <!-- Overlay sutil nas bordas para evitar vazamento -->
-                <div class="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-black/5 pointer-events-none"></div>
-                
-                <!-- Indicador discreto -->
-                <div class="absolute bottom-4 right-4 z-10">
-                    <div class="bg-black/50 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full flex items-center gap-2">
-                        <i class="fas fa-play"></i>
-                        <span>Vídeo demonstrativo</span>
+        <!-- VÍDEO EXATAMENTE COMO ESTÁ -->
+   <section class="relative w-full mt-12 md:mt-16 rounded-xl overflow-hidden shadow-2xl">
+    <!-- Container do vídeo -->
+    <div class="relative w-full h-[50vh] min-h-[400px] md:h-[60vh] md:min-h-[500px] overflow-hidden bg-black">
+        <!-- Vídeo principal -->
+        <video
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full object-cover"
+            src="img/MDF_Corte_Planejado_Vídeo_Pronto.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            style="width: 100.5%; height: 100.5%;"
+        >
+            <source src="img/MDF_Corte_Planejado_Vídeo_Pronto.mp4" type="video/mp4">
+        </video>
+        
+        <!-- Overlay sutil nas bordas para evitar vazamento -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-black/5 pointer-events-none"></div>
+        
+        <!-- Indicador discreto -->
+        <div class="absolute bottom-4 right-4 z-10">
+            <div class="bg-black/50 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full flex items-center gap-2">
+                <i class="fas fa-play"></i>
+                <span>Vídeo demonstrativo</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- COMPARAÇÃO ABAIXO DO VÍDEO -->
+    <!-- Toggle Comparação -->
+    <div class="bg-gray-900 text-white p-4 flex items-center justify-center gap-4">
+        <button id="btn-manual" class="px-4 py-2 rounded-lg font-semibold text-sm transition-all bg-red-500 shadow-lg">
+            ❌ Corte Manual/Serra
+        </button>
+        <i class="fas fa-arrow-right text-gray-400"></i>
+        <button id="btn-cnc" class="px-4 py-2 rounded-lg font-semibold text-sm transition-all bg-gray-800 hover:bg-gray-700">
+            ✅ Corte CNC (Nosso)
+        </button>
+    </div>
+
+    <!-- Comparação -->
+    <div class="grid md:grid-cols-2 divide-x divide-gray-200 bg-white">
+        
+        <!-- Lado Manual -->
+        <div id="manual-side" class="p-6 bg-red-50">
+            <div class="flex items-center gap-2 mb-4">
+                <div class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center">
+                    <i class="fas fa-times-circle text-white text-lg"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900">Corte Manual/Serra</h4>
+                    <p class="text-xs text-red-600">Como fazem outros marceneiros</p>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <div class="flex items-start gap-2">
+                    <i class="fas fa-times-circle text-red-500 flex-shrink-0 mt-0.5"></i>
+                    <div>
+                        <p class="font-semibold text-sm text-gray-900">Bordas Irregulares</p>
+                        <p class="text-xs text-gray-600">Corte manual deixa rebarbas e ondulações</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-2">
+                    <i class="fas fa-times-circle text-red-500 flex-shrink-0 mt-0.5"></i>
+                    <div>
+                        <p class="font-semibold text-sm text-gray-900">Frestas nos Encaixes</p>
+                        <p class="text-xs text-gray-600">Peças não se encaixam perfeitamente</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-2">
+                    <i class="fas fa-times-circle text-red-500 flex-shrink-0 mt-0.5"></i>
+                    <div>
+                        <p class="font-semibold text-sm text-gray-900">Cantos Lascados</p>
+                        <p class="text-xs text-gray-600">Serra arranca lascas do MDF</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-2">
+                    <i class="fas fa-times-circle text-red-500 flex-shrink-0 mt-0.5"></i>
+                    <div>
+                        <p class="font-semibold text-sm text-gray-900">Borda Descola Rápido</p>
+                        <p class="text-xs text-gray-600">Superfície irregular não permite boa aderência</p>
                     </div>
                 </div>
             </div>
-            
-            <!-- Legenda opcional -->
-            <div class="bg-white p-4 md:p-6 text-center">
-                <p class="text-gray-600 text-sm md:text-base">
-                    <i class="fas fa-video text-oliva mr-2"></i>
-                    Processo de fabricação dos nossos móveis planejados - Corte preciso do MDF
+
+            <!-- GRÁFICO - Corte Manual (Irregular) -->
+            <div class="mt-6 p-4 bg-white rounded-lg border-2 border-red-200">
+                <p class="text-center text-sm text-gray-700 mb-2 font-medium">Corte Irregular (Ampliado)</p>
+                <div class="relative h-16 bg-gradient-to-r from-red-100 to-red-50 rounded">
+                    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 64">
+                        <path d="M 0 32 Q 50 28, 100 34 T 200 30 T 300 36 T 400 32" stroke="#ef4444" stroke-width="3" fill="none" />
+                        <circle cx="80" cy="34" r="3" fill="#dc2626" />
+                        <circle cx="180" cy="30" r="3" fill="#dc2626" />
+                        <circle cx="280" cy="36" r="3" fill="#dc2626" />
+                    </svg>
+                </div>
+                <p class="text-center text-sm text-red-600 mt-3 font-semibold">
+                    ⚠️ Imperfeições visíveis e ao toque
                 </p>
             </div>
-        </section>
-        
-        <!-- Estilos específicos para o vídeo -->
-        <style>
-            /* Ajustes específicos para o container do vídeo */
-            .overflow-hidden {
-                overflow: hidden;
-            }
-            
-            /* Garantir que o vídeo cubra todo o espaço */
-            video {
-                min-width: 100%;
-                min-height: 100%;
-                width: auto;
-                height: auto;
-            }
-            
-            /* Adicionar um leve zoom para cobrir bordas */
-            @media (min-width: 768px) {
-                video {
-                    width: 101%;
-                    height: 101%;
-                }
-            }
-            
-            /* Para telas menores, ajustar proporção */
-            @media (max-width: 767px) {
-                .h-\[50vh\] {
-                    height: 50vh;
-                }
-                
-                .min-h-\[400px\] {
-                    min-height: 350px;
-                }
-            }
-        </style>
+        </div>
+
+        <!-- Lado CNC -->
+        <div id="cnc-side" class="p-6 bg-green-50/30">
+            <div class="flex items-center gap-2 mb-4">
+                <div class="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-check-circle text-white text-lg"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900">Corte CNC Computadorizado</h4>
+                    <p class="text-xs text-green-600">Nossa tecnologia exclusiva</p>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <div class="flex items-start gap-2">
+                    <i class="fas fa-check-circle text-green-500 flex-shrink-0 mt-0.5"></i>
+                    <div>
+                        <p class="font-semibold text-sm text-gray-900">Bordas Perfeitamente Lisas</p>
+                        <p class="text-xs text-gray-600">Corte preciso sem rebarbas</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-2">
+                    <i class="fas fa-check-circle text-green-500 flex-shrink-0 mt-0.5"></i>
+                    <div>
+                        <p class="font-semibold text-sm text-gray-900">Encaixe Milimétrico</p>
+                        <p class="text-xs text-gray-600">Peças se encaixam perfeitamente</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-2">
+                    <i class="fas fa-check-circle text-green-500 flex-shrink-0 mt-0.5"></i>
+                    <div>
+                        <p class="font-semibold text-sm text-gray-900">Zero Lascas</p>
+                        <p class="text-xs text-gray-600">Corte limpo preserva 100% do MDF</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-2">
+                    <i class="fas fa-check-circle text-green-500 flex-shrink-0 mt-0.5"></i>
+                    <div>
+                        <p class="font-semibold text-sm text-gray-900">Borda Nunca Descola</p>
+                        <p class="text-xs text-gray-600">Superfície lisa permite aderência perfeita</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GRÁFICO - Corte CNC (Perfeito) -->
+            <div class="mt-6 p-4 bg-white rounded-lg border-2 border-green-200">
+                <p class="text-center text-sm text-gray-700 mb-2 font-medium">Corte CNC Perfeito (Ampliado)</p>
+                <div class="relative h-16 bg-gradient-to-r from-green-100 to-emerald-50 rounded">
+                    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 64">
+                        <line x1="0" y1="32" x2="400" y2="32" stroke="#10b981" stroke-width="3" />
+                        <circle cx="100" cy="32" r="2.5" fill="#059669" />
+                        <circle cx="200" cy="32" r="2.5" fill="#059669" />
+                        <circle cx="300" cy="32" r="2.5" fill="#059669" />
+                    </svg>
+                </div>
+                <p class="text-center text-sm text-green-600 mt-3 font-semibold">
+                    ✅ Linha absolutamente reta e lisa
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rodapé da comparação -->
+    <div class="bg-gray-50 p-6 text-center border-t border-gray-200">
+        <p class="text-base text-gray-700">
+            <strong class="text-gray-900">A diferença:</strong> Enquanto outros usam serra manual, 
+            investimos em <strong class="text-oliva">tecnologia CNC de precisão</strong> para 
+            garantir acabamento profissional em todos os nossos móveis.
+        </p>
     </div>
 </section>
+
+<!-- JavaScript para o toggle de comparação -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const btnManual = document.getElementById('btn-manual');
+    const btnCnc = document.getElementById('btn-cnc');
+    const manualSide = document.getElementById('manual-side');
+    const cncSide = document.getElementById('cnc-side');
+    let comparacaoAtiva = false;
+
+    btnManual.addEventListener('click', function() {
+        comparacaoAtiva = false;
+        updateComparison();
+    });
+
+    btnCnc.addEventListener('click', function() {
+        comparacaoAtiva = true;
+        updateComparison();
+    });
+
+    function updateComparison() {
+        if (comparacaoAtiva) {
+            // Ativar CNC
+            btnManual.className = 'px-4 py-2 rounded-lg font-semibold text-sm transition-all bg-gray-800 hover:bg-gray-700';
+            btnCnc.className = 'px-4 py-2 rounded-lg font-semibold text-sm transition-all bg-green-500 shadow-lg';
+            manualSide.className = 'p-6 bg-red-50/30';
+            cncSide.className = 'p-6 bg-green-50';
+        } else {
+            // Ativar Manual
+            btnManual.className = 'px-4 py-2 rounded-lg font-semibold text-sm transition-all bg-red-500 shadow-lg';
+            btnCnc.className = 'px-4 py-2 rounded-lg font-semibold text-sm transition-all bg-gray-800 hover:bg-gray-700';
+            manualSide.className = 'p-6 bg-red-50';
+            cncSide.className = 'p-6 bg-green-50/30';
+        }
+    }
+
+    // Inicializar comparação
+    updateComparison();
+});
+</script>
     <!-- Portfolio Section responsiva -->
     <section id="portfolio" class="py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
         <div class="container mx-auto px-4 sm:px-6 text-center mb-8 sm:mb-12 md:mb-16">
